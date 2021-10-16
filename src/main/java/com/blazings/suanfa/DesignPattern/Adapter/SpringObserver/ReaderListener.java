@@ -8,10 +8,6 @@ public class ReaderListener implements ApplicationListener<MyEvent>{
     String name;
     String article;
 
-//    public ReaderListener(String name) {
-//        this.name = name;
-//    }
-
     @Override
     public void onApplicationEvent(MyEvent myEvent) {
         UpdateArticle(myEvent);
