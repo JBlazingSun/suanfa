@@ -1,13 +1,13 @@
 package com.blazings.suanfa.DesignPattern.Adapter.SpringObserver;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
-import org.springframework.context.annotation.Configuration;
 
 public class MyEvent extends ApplicationEvent {
+    String msg;
 
-    public MyEvent(Object source) {
+    public MyEvent(Object source,String msg) {
         super(source);
+        this.msg = msg;
         System.out.println("MyEvent 构造器执行");
     }
     public void print(){
@@ -17,6 +17,14 @@ public class MyEvent extends ApplicationEvent {
         return "biz";
     }
     public String DoSomething(){
-        return "DoSomething";
+        return "DoSomething   "+msg;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
