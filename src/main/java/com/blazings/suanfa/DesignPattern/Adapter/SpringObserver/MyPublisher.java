@@ -15,8 +15,8 @@ public class MyPublisher implements ApplicationContextAware {
         this.applicationContext= applicationContext;
     }
 
-    public void PublisherEvent(){
+    public void PublisherEvent(String msg){
         System.out.println("开始发布事件");
-        applicationContext.publishEvent(new MyEvent(this,"aaa"));
+        applicationContext.publishEvent(new MyEvent(this,msg));
     }
 }

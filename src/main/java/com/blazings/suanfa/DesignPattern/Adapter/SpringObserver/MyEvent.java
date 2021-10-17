@@ -13,9 +13,6 @@ public class MyEvent extends ApplicationEvent {
     public void print(){
         System.out.println("hello spring event[MyEvent]");
     }
-    public String biz(){
-        return "biz";
-    }
     public String DoSomething(){
         return "DoSomething   "+msg;
     }

@@ -24,9 +24,8 @@ public class SuanfaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("SpringObserver");
-//        ReaderListener xh = new ReaderListener();
-//        ReaderListener xj = new ReaderListener();
-        myPublisher.PublisherEvent();
+        myPublisher.PublisherEvent("消息1111");
+        myPublisher.PublisherEvent("消息22222");
 
 
 
