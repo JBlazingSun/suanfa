@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Adapter.caipiao;
+package com.blazings.suanfa.DesignPattern.Observer.caipiao;
 
 /**
  * @author blazings

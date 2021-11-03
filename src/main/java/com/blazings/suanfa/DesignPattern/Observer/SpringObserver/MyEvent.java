@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Adapter.SpringObserver;
+package com.blazings.suanfa.DesignPattern.Observer.SpringObserver;
 
 import org.springframework.context.ApplicationEvent;
 
