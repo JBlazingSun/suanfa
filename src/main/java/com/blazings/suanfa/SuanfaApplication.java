@@ -19,9 +19,9 @@ public class SuanfaApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         
-//        System.out.println("SpringObserver");
-//        myPublisher.PublisherEvent("消息1111");
-//        myPublisher.PublisherEvent("消息22222");
+        System.out.println("SpringObserver");
+        myPublisher.PublisherEvent("消息1111");
+        myPublisher.PublisherEvent("消息22222");
 
 //        System.out.println("caipiao");
 //        ObjectFor3D objectFor3D = new ObjectFor3D();
