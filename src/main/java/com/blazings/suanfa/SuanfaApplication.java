@@ -1,6 +1,9 @@
 package com.blazings.suanfa;
 
 import com.blazings.suanfa.DesignPattern.Observer.SpringObserver.MyPublisher;
+import com.blazings.suanfa.DesignPattern.Observer.caipiao.ObjectFor3D;
+import com.blazings.suanfa.DesignPattern.Observer.caipiao.Observer1;
+import com.blazings.suanfa.DesignPattern.Observer.caipiao.Observer2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
