@@ -23,10 +23,10 @@ public class SuanfaApplication implements CommandLineRunner {
         myPublisher.PublisherEvent("消息1111");
         myPublisher.PublisherEvent("消息22222");
 
-//        System.out.println("caipiao");
-//        ObjectFor3D objectFor3D = new ObjectFor3D();
-//        Observer1 observer1 = new Observer1(objectFor3D);
-//        Observer2 observer2 = new Observer2(objectFor3D);
+        System.out.println("caipiao");
+        ObjectFor3D objectFor3D = new ObjectFor3D();
+        Observer1 observer1 = new Observer1(objectFor3D);
+        Observer2 observer2 = new Observer2(objectFor3D);
 //
 //        objectFor3D.setMsg("今天的号码是 17 22 42");
 //        objectFor3D.setMsg("明天的号码  12305 ");
