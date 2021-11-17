@@ -1,9 +1,6 @@
 package com.blazings.suanfa;
 
 import com.blazings.suanfa.DesignPattern.Observer.SpringObserver.MyPublisher;
-import com.blazings.suanfa.DesignPattern.Observer.caipiao.ObjectFor3D;
-import com.blazings.suanfa.DesignPattern.Observer.caipiao.Observer1;
-import com.blazings.suanfa.DesignPattern.Observer.caipiao.Observer2;
 import com.blazings.suanfa.JavaPractice.Java8Lamdba;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,16 +10,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SuanfaApplication implements CommandLineRunner {
 
-  @Autowired MyPublisher myPublisher;
+    @Autowired
+    MyPublisher myPublisher;
 
-  public static void main(String[] args) {
-    SpringApplication.run(SuanfaApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(SuanfaApplication.class, args);
+    }
 
-  @Override
-  public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 
-    Java8Lamdba.ShowPredicate();
+        Java8Lamdba.ShowPredicate();
 
 //    System.out.println("SpringObserver");
 //    myPublisher.PublisherEvent("消息1111");
@@ -35,5 +33,5 @@ public class SuanfaApplication implements CommandLineRunner {
 //    // -------
 //    objectFor3D.setMsg("今天的号码是 17 22 42");
 //    objectFor3D.setMsg("明天的号码  12305 ");
-  }
+    }
 }
