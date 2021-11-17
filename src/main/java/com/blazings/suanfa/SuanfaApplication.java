@@ -1,11 +1,18 @@
 package com.blazings.suanfa;
 
+import cn.hutool.core.text.StrJoiner;
+import cn.hutool.core.text.StrSplitter;
 import com.blazings.suanfa.DesignPattern.Observer.SpringObserver.MyPublisher;
+import com.blazings.suanfa.FastJjson.MyFastjson;
 import com.blazings.suanfa.JavaPractice.Java8Lamdba;
+import com.google.common.base.Joiner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class SuanfaApplication implements CommandLineRunner {
@@ -20,7 +27,13 @@ public class SuanfaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Java8Lamdba.ShowPredicate();
+        
+//        String s = "a, ,efedsfs,   ddf,";
+//        List<String> split = StrSplitter.split(s,",",0,true,true,true);
+//        String join = Joiner.on(",").join(split);
+//        System.out.println(join);
+//        MyFastjson.Fun();
+//        Java8Lamdba.ShowPredicate();
 
 //    System.out.println("SpringObserver");
 //    myPublisher.PublisherEvent("消息1111");
