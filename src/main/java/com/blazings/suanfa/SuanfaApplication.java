@@ -1,21 +1,10 @@
 package com.blazings.suanfa;
 
-import cn.hutool.core.text.StrJoiner;
-import cn.hutool.core.text.StrSplitter;
 import com.blazings.suanfa.DesignPattern.Observer.SpringObserver.MyPublisher;
-import com.blazings.suanfa.FastJjson.MyFastjson;
-import com.blazings.suanfa.JavaPractice.Java8Lamdba;
-import com.google.common.base.Joiner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 @SpringBootApplication
 public class SuanfaApplication implements CommandLineRunner {
