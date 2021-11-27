@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Observer.caipiao;
+package com.blazings.suanfa.designpattern.observer.caipiao;
 
 import java.util.ArrayList;
 import java.util.List;

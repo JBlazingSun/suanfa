@@ -1,5 +1,6 @@
-package com.blazings.suanfa.JavaPractice;
+package com.blazings.suanfa.javapractice;
 
+import com.blazings.suanfa.javapractice.stream.Java8Lamdba;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Observer.caipiao;
+package com.blazings.suanfa.designpattern.observer.caipiao;
 
 public class Observer1 implements ObserverI{
     SubjectI subjectI;

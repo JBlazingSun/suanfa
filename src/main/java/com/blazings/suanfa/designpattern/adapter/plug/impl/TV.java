@@ -1,6 +1,6 @@
-package com.blazings.suanfa.DesignPattern.Adapter.Plug.impl;
+package com.blazings.suanfa.designpattern.adapter.plug.impl;
 
-import com.blazings.suanfa.DesignPattern.Adapter.Plug.DualPin;
+import com.blazings.suanfa.designpattern.adapter.plug.DualPin;
 
 public class TV implements DualPin {
     @Override
