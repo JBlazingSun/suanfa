@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Adapter.Plug;
+package com.blazings.suanfa.designpattern.adapter.plug;
 
 public interface TriplePin {
     /**

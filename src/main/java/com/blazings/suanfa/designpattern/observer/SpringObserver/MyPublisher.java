@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Observer.SpringObserver;
+package com.blazings.suanfa.designpattern.observer.SpringObserver;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

@@ -1,7 +1,7 @@
-package com.blazings.suanfa.DesignPattern.Adapter.Plug.impl;
+package com.blazings.suanfa.designpattern.adapter.plug.impl;
 
-import com.blazings.suanfa.DesignPattern.Adapter.Plug.DualPin;
-import com.blazings.suanfa.DesignPattern.Adapter.Plug.TriplePin;
+import com.blazings.suanfa.designpattern.adapter.plug.DualPin;
+import com.blazings.suanfa.designpattern.adapter.plug.TriplePin;
 
 public class Adapter implements TriplePin {
     private DualPin dualPinDevice;

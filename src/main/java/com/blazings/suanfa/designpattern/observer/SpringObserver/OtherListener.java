@@ -1,4 +1,4 @@
-package com.blazings.suanfa.DesignPattern.Observer.SpringObserver;
+package com.blazings.suanfa.designpattern.observer.SpringObserver;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
