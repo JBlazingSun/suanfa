@@ -19,6 +19,7 @@ public class SuanfaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        System.out.println("sss");
 //        String s = "a, ,efedsfs,   ddf,";
 //        List<String> split = StrSplitter.split(s,",",0,true,true,true);
 //        String join = Joiner.on(",").join(split);
