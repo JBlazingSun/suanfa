@@ -1,16 +1,22 @@
 package com.blazings.suanfa;
 
+import com.blazings.suanfa.component.mybatisplus.mapper.user_nameMapper;
 import com.blazings.suanfa.designpattern.observer.SpringObserver.MyPublisher;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com/blazings/suanfa/component/mybatisplus/mapper")
 public class SuanfaApplication implements CommandLineRunner {
 
     @Autowired
     MyPublisher myPublisher;
+
+    @Autowired
+    user_nameMapper user_nameMapper;
 
     public static void main(String[] args) {
         SpringApplication.run(SuanfaApplication.class, args);
@@ -19,7 +25,7 @@ public class SuanfaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("sss");
+
 //        String s = "a, ,efedsfs,   ddf,";
 //        List<String> split = StrSplitter.split(s,",",0,true,true,true);
 //        String join = Joiner.on(",").join(split);
