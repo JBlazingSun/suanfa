@@ -1,4 +1,4 @@
-package com.blazings.suanfa.fastjson;
+package com.blazings.suanfa.component.fastjson;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
