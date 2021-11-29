@@ -2,7 +2,9 @@ package com.blazings.suanfa.component.mybatisplus.mapper;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blazings.suanfa.component.mybatisplus.service.impl.user_nameServiceImpl;
 import com.blazings.suanfa.component.mybatisplus.vo.user_name;
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,9 @@ class user_nameMapperTest {
 
     @Test
     void user_nameServiceImplTest() {
+        IPage<user_name> userPage = new Page<>(1,4);
+        IPage<user_name> user_nameIPage = user_nameMapper.selectPage(userPage, null);
+        System.out.println("user_nameIPage = " + user_nameIPage);
         System.out.println("user_nameService.count() = " + user_nameService.count());
     }
 }
