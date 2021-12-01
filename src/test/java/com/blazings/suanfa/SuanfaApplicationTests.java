@@ -8,6 +8,7 @@ class SuanfaApplicationTests {
 
     @Test
     void contextLoads() {
+    System.out.println("xxljob------```````");
     }
 
 }
