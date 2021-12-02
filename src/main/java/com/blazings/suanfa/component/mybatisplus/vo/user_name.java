@@ -10,7 +10,7 @@ import lombok.Data;
 @TableName("user_name")
 public class user_name {
     @TableId(type = IdType.AUTO)
-    int id;
+    Integer id;
     String name;
     String userName;
     String mjson;
