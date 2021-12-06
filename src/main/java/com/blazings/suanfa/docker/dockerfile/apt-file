@@ -1,0 +1,10 @@
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.13_8
+
+LABEL maintainer="blazings@vip.qq.com"
+
+RUN apt-get update && apt-get install -y \
+    apt-file \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+CMD ["bash"]
