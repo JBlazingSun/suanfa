@@ -15,7 +15,7 @@ import java.util.List;
 //@Api(value = "SwaggerContorller")
 @RestController
 @RequestMapping("swagger")
-public class swaggerContorller {
+public class SwaggerContorller {
 //    @ApiOperation("SwaggerOperation")
     @GetMapping("swagger")
     public ResponseEntity<User> Swagger() {
