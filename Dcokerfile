@@ -1,6 +1,0 @@
-FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.13_8
-
-MAINTAINER j
-
-ARG java
-
