@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Api(value = "SwaggerContorller")
 @RestController
 @RequestMapping("swagger")
-public class SwaggerContorller {
-//    @ApiOperation("SwaggerOperation")
-    @GetMapping("swagger")
+public class SwaggerController {
+    @GetMapping()
     public ResponseEntity<User> Swagger() {
         User user = new User();
         user.setName("aa");
@@ -27,7 +25,6 @@ public class SwaggerContorller {
         return ResponseEntity.ok(user);
     }
 
-    //  @ApiOperation("SwaggerListUser")
     @GetMapping("SwaggerListUser")
     public ResponseEntity<List<User>> SwaggerListUser() {
         ArrayList<User> objects = Lists.newArrayList();
