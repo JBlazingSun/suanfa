@@ -3,22 +3,24 @@ package com.blazings.suanfa;
 import com.blazings.suanfa.component.mybatisplus.mapper.user_nameMapper;
 import com.blazings.suanfa.designpattern.observer.SpringObserver.MyPublisher;
 import com.blazings.suanfa.sql.tujie.mapper.CourseMapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
+@EnableSwagger2WebMvc
 @SpringBootApplication
-@MapperScan("com/blazings/suanfa/component/mybatisplus/mapper")
-@MapperScan("com/blazings/suanfa/sql/tujie/mapper")
 public class SuanfaApplication implements CommandLineRunner {
 
-  @Autowired MyPublisher myPublisher;
+  @Autowired
+  MyPublisher myPublisher;
 
-  @Autowired user_nameMapper user_nameMapper;
+  @Autowired
+  user_nameMapper user_nameMapper;
 
-  @Autowired CourseMapper courseMapper;
+  @Autowired
+  CourseMapper courseMapper;
 
   public static void main(String[] args) {
     SpringApplication.run(SuanfaApplication.class, args);

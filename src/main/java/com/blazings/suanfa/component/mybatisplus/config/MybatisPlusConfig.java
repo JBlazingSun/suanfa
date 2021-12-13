@@ -3,17 +3,13 @@ package com.blazings.suanfa.component.mybatisplus.config;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@MapperScan("com/blazings/suanfa/component/mybatisplus/mapper")
 public class MybatisPlusConfig {
-    // 旧版
-//    @Bean
-//    public PaginationInterceptor paginationInterceptor() {
-//        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-//        return paginationInterceptor;
-//    }
     // 最新版
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

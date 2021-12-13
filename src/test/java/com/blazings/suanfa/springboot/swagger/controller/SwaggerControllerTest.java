@@ -13,25 +13,27 @@ import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest
 class SwaggerControllerTest {
-  MockMvc mockMvc;
-  @Autowired WebApplicationContext webApplicationContext;
+    MockMvc mockMvc;
+    @Autowired
+    WebApplicationContext webApplicationContext;
 
-  @BeforeEach
-  void setUp() {
-    MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-  }
+    @BeforeEach
+    void setUp() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
 
-  @Test
-  void swagger() throws Exception {
-    mockMvc
-        .perform(
-            MockMvcRequestBuilders.get("/swagger")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        .andReturn()
-        .getResponse();
-  }
+    @Test
+    void swagger() throws Exception {
+        mockMvc
+                .perform(
+                        MockMvcRequestBuilders.get("/swagger")
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn()
+                .getResponse();
+    }
 
-  @Test
-  void swaggerListUser() {}
+    @Test
+    void swaggerListUser() {
+    }
 }
