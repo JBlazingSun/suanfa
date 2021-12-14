@@ -8,9 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com/blazings/suanfa/component/mybatisplus/mapper")
+@MapperScan("com/blazings/suanfa/component/mybatisplus/samplecrud/dao")
 public class MybatisPlusConfig {
-    // 最新版
+    /**
+     * 最新版
+     * @return
+     */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
