@@ -1,7 +1,6 @@
 package com.blazings.suanfa;
 
 import com.blazings.suanfa.designpattern.observer.SpringObserver.MyPublisher;
-import com.blazings.suanfa.sql.tujie.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +11,6 @@ public class SuanfaApplication implements CommandLineRunner {
 
   @Autowired
   MyPublisher myPublisher;
-
-  @Autowired
-  CourseMapper courseMapper;
 
   public static void main(String[] args) {
     SpringApplication.run(SuanfaApplication.class, args);

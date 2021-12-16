@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blazings.suanfa.sql.tujie.dao.CourseDao">
+
+    <resultMap type="com.blazings.suanfa.sql.tujie.entity.Course" id="CourseMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+        <result property="tecId" column="tec_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.Course(course_name, tec_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.courseName}, #{entity.tecId})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.Course(course_name, tec_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.courseName}, #{entity.tecId})
+        </foreach>
+        on duplicate key update
+        course_name = values(course_name) , tec_id = values(tec_id)
+    </insert>
+
+</mapper>
+
