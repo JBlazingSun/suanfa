@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @MapperScan("com/blazings/suanfa/component/mybatisplus/samplecrud/dao")
+@MapperScan("com/blazings/suanfa/component/mybatisplus/samplewrapper/dao")
 public class MybatisPlusConfig {
     /**
      * 最新版
