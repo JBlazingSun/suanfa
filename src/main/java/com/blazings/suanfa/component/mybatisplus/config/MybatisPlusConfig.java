@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan("com/blazings/suanfa/component/mybatisplus/samplecrud/dao")
 @MapperScan("com/blazings/suanfa/component/mybatisplus/samplewrapper/dao")
+@MapperScan("com/blazings/suanfa/component/mybatisplus/userpagination/dao")
 public class MybatisPlusConfig {
     /**
      * 最新版
@@ -21,4 +22,5 @@ public class MybatisPlusConfig {
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
     }
+
 }

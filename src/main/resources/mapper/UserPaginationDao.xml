@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blazings.suanfa.component.mybatisplus.userpagination.dao.UserPaginationDao">
+
+    <resultMap type="com.blazings.suanfa.component.mybatisplus.userpagination.entity.UserPagination" id="UserPaginationMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into mp_sample.user_pagination(name, age, email)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.age}, #{entity.email})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into mp_sample.user_pagination(name, age, email)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.age}, #{entity.email})
+        </foreach>
+        on duplicate key update
+        name = values(name) , age = values(age) , email = values(email)
+    </insert>
+
+</mapper>
+

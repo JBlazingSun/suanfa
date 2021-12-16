@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.blazings.suanfa.component.mybatisplus.samplewrapper.entity.UserSampleWrapper;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class UserSampleWrapperDaoTest {
 	@Autowired
@@ -26,6 +25,15 @@ class UserSampleWrapperDaoTest {
 
 	@AfterEach
 	void tearDown() {
+	}
+
+	@Test
+	void testLambda() {
+		UserSampleWrapper userSampleWrapper = new UserSampleWrapper();
+		userSampleWrapper.setAge(29);
+		userSampleWrapper.setEmail("test3update@baomidou.com");
+		int tom = userSampleWrapperDao.update(userSampleWrapper, new LambdaQueryWrapper<UserSampleWrapper>().eq(UserSampleWrapper::getName, "Tom"));
+		assertEquals(1, tom);
 	}
 
 	/**
