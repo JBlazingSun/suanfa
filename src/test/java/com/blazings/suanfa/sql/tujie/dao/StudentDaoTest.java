@@ -1,13 +1,14 @@
-package com.blazings.suanfa.sql.tujie.entity;
+package com.blazings.suanfa.sql.tujie.dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.blazings.suanfa.sql.tujie.dao.StudentDao;
+import com.blazings.suanfa.sql.tujie.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class StudentTest {
+class StudentDaoTest {
 	@Autowired
 	StudentDao studentDao;
 
