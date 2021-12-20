@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blazings.suanfa.component.mybatisplus.mpj.dao.AreaDao">
+
+    <resultMap type="com.blazings.suanfa.component.mybatisplus.mpj.entity.Area" id="AreaMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="postcode" column="postcode" jdbcType="VARCHAR"/>
+        <result property="del" column="del" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.area(province, city, area, postcode, del)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.province}, #{entity.city}, #{entity.area}, #{entity.postcode}, #{entity.del})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.area(province, city, area, postcode, del)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.province}, #{entity.city}, #{entity.area}, #{entity.postcode}, #{entity.del})
+        </foreach>
+        on duplicate key update
+        province = values(province) , city = values(city) , area = values(area) , postcode = values(postcode) , del = values(del)
+    </insert>
+
+</mapper>
+

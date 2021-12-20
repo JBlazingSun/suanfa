@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blazings.suanfa.component.mybatisplus.mpj.dao.UserAddressDao">
+
+    <resultMap type="com.blazings.suanfa.component.mybatisplus.mpj.entity.UserAddress" id="UserAddressMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="areaId" column="area_id" jdbcType="INTEGER"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="del" column="del" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.user_address(user_id, area_id, tel, address, del)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.areaId}, #{entity.tel}, #{entity.address}, #{entity.del})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.user_address(user_id, area_id, tel, address, del)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.areaId}, #{entity.tel}, #{entity.address}, #{entity.del})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id) , area_id = values(area_id) , tel = values(tel) , address = values(address) , del = values(del)
+    </insert>
+
+</mapper>
+
