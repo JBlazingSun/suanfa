@@ -43,6 +43,7 @@ class UserDaoMPJTest {
 	void name1() {
 		MPJLambdaWrapper<UserDTO> er = new MPJLambdaWrapper<UserDTO>()
 			.selectAll(User.class)
+			.selectAll(UserAddress.class)
 			.leftJoin(UserAddress.class,UserAddress::getUserId,User::getId)
 			.eq(User::getId, 1);
 		List<UserDTO> dtos = userDao.selectJoinList(UserDTO.class,er);
