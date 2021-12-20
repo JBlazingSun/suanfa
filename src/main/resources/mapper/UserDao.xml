@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blazings.suanfa.component.mybatisplus.mpj.dao.UserDao">
+
+    <resultMap type="com.blazings.suanfa.component.mybatisplus.mpj.entity.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="headImg" column="head_img" jdbcType="VARCHAR"/>
+        <result property="del" column="del" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.user(name, sex, head_img, del)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.sex}, #{entity.headImg}, #{entity.del})
+        </foreach>
+    </insert>
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into tujie-sql.user(name, sex, head_img, del)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.sex}, #{entity.headImg}, #{entity.del})
+        </foreach>
+        on duplicate key update
+        name = values(name) , sex = values(sex) , head_img = values(head_img) , del = values(del)
+    </insert>
+
+</mapper>
+
