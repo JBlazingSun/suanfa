@@ -48,4 +48,9 @@ class UserDaoMPJTest {
 			.eq(User::getId, 1);
 		List<UserDTO> dtos = userDao.selectJoinList(UserDTO.class,er);
 	}
+
+	@Test
+	void name2() {
+
+	}
 }
