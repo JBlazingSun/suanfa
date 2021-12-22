@@ -20,10 +20,9 @@ public class RestfulController {
 		return ResponseEntity.ok("hello12  " + DateUtil.now());
 	}
 
-	@GetMapping("errortest")
-	public Object PublicMethod() {
-		throw new RestfulErrorTest("test exception");
-
-//		return new Object();
+  @GetMapping("errortest")
+  public Object PublicMethod(String id) {
+    // 抛出自定义异常
+    throw new RestfulErrorTest("test exception", id);
 	}
 }
