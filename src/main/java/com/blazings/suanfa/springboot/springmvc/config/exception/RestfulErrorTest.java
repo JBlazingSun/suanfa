@@ -1,10 +1,14 @@
 package com.blazings.suanfa.springboot.springmvc.config.exception;
 
-public class RestfulErrorTest extends RuntimeException{
+import lombok.Data;
 
-	private static final long serialVersionUID = 860294146204917253L;
+@Data
+public class RestfulErrorTest extends RuntimeException {
 
-	public RestfulErrorTest(String message) {
-		super(message);
-	}
+  String id;
+
+  public RestfulErrorTest(String message, String id) {
+    super(message);
+    this.id = id;
+  }
 }

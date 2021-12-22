@@ -16,7 +16,8 @@ public class RestfulContorllerAop {
 	 */
 	@Around("execution(* com.blazings.suanfa.springboot.springmvc.controller.RestfulController..*(..))")
 	public Object RestfulAop(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		System.out.println("RestfulContorllerAop before");
+    System.out.println(
+        "RestfulContorllerAop before " + proceedingJoinPoint.getSignature().getName());
 
 		for (Object arg : proceedingJoinPoint.getArgs()) {
 			System.out.println(arg);
@@ -24,7 +25,8 @@ public class RestfulContorllerAop {
 
 		Object proceed = proceedingJoinPoint.proceed();
 
-		System.out.println("RestfulContorllerAop after");
+    System.out.println(
+        "RestfulContorllerAop after " + proceedingJoinPoint.getSignature().getName());
 		return proceed;
 	}
 }

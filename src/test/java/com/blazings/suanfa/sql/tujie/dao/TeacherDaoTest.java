@@ -1,7 +1,6 @@
 package com.blazings.suanfa.sql.tujie.dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.blazings.suanfa.sql.tujie.entity.Course;
 import com.blazings.suanfa.sql.tujie.entity.Teacher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,4 +22,5 @@ class TeacherDaoTest {
 		Long selectCount = teacherDao.selectCount(likeRight);
 		Assertions.assertEquals(selectCount, 1);
 	}
+
 }
