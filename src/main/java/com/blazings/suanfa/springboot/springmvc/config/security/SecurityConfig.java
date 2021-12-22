@@ -1,4 +1,4 @@
-package com.blazings.suanfa.springboot.springmvc.config;
+package com.blazings.suanfa.springboot.springmvc.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
