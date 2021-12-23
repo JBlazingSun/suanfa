@@ -1,5 +1,6 @@
 package com.blazings.suanfa.springboot.springmvc.config.exception;
 
+import com.blazings.suanfa.springboot.springmvc.entity.User;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.HttpStatus;
@@ -13,12 +14,10 @@ import java.util.Map;
 @RestControllerAdvice
 public class ControllerAdviceHandler {
 
-  @ExceptionHandler(RestfulErrorTest.class)
-  @ResponseStatus(HttpStatus.OK)
-  public Map<String, Object> RestfulErrorTest(RestfulErrorTest restfulErrorTest) {
-    HashMap<@Nullable String, @Nullable Object> map = Maps.newHashMap();
-    map.put("msg", restfulErrorTest.getMessage());
-    map.put("id", restfulErrorTest.getId());
-    return map;
-  }
+	@ExceptionHandler(RestfulErrorTest.class)
+	@ResponseStatus(HttpStatus.OK)
+	public User RestfulErrorTest(RestfulErrorTest restfulErrorTest) {
+
+		return restfulErrorTest.getUser();
+	}
 }
