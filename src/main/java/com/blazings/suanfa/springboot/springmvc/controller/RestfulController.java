@@ -7,6 +7,7 @@ import com.blazings.suanfa.springboot.springmvc.entity.User;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class RestfulController {
   }
 
   @GetMapping("CrudGet")
-  public ResponseEntity<User> GetMethod(User user) {
+  public ResponseEntity<User> GetMethod(@Validated User user) {
     user.setUser("CrudGet");
     return ResponseEntity.ok(user);
   }
