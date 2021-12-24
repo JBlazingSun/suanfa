@@ -13,5 +13,5 @@ public class User {
 	String user;
 	String password;
 	LocalDateTime updateTime;
-  @NotNull @PositiveOrZero() BigInteger number;
+	@NotNull @PositiveOrZero() BigInteger number;
 }
