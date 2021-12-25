@@ -75,6 +75,9 @@ public class JacksonCustomizerConfig {
 		return new Converter<String, LocalDateTime>() {
 			@Override
 			public LocalDateTime convert(String source) {
+				if (source.length() == 0) {
+					return LocalDateTimeUtil.of(System.currentTimeMillis());
+				}
 				//毫秒级时间戳转LocalDateTime
 				return LocalDateTimeUtil.of(Long.parseLong(source), ZoneOffset.of("+8"));
 			}
@@ -90,6 +93,9 @@ public class JacksonCustomizerConfig {
 		return new Converter<String, Date>() {
 			@Override
 			public Date convert(String source) {
+				if (source.length() == 0) {
+					return new Date(System.currentTimeMillis());
+				}
 				long longTimeStamp = new Long(source);
 				return new Date(longTimeStamp);
 			}
