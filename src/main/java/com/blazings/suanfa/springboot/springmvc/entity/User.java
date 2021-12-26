@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class User {
-
+	@NotNull
 	String user;
 	String password;
 	LocalDateTime updateTime;
