@@ -19,7 +19,6 @@ import java.util.Date;
 
 @Configuration
 public class JacksonCustomizerConfig {
-
 	/**
 	 * 配置LocalDateTime自动返回前端时间戳
 	 * description:适配自定义序列化和反序列化策略
@@ -31,7 +30,6 @@ public class JacksonCustomizerConfig {
 			builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer());
 		};
 	}
-
 	/**
 	 * 配置LocalDateTime自动返回前端时间戳
 	 * description:序列化
@@ -47,7 +45,6 @@ public class JacksonCustomizerConfig {
 			}
 		}
 	}
-
 	/**
 	 * 配置LocalDateTime自动返回前端时间戳
 	 * description:反序列化
@@ -65,7 +62,6 @@ public class JacksonCustomizerConfig {
 			}
 		}
 	}
-
 	/**
 	 * description:LocalDateTime转换器，用于转换RequestParam和PathVariable参数
 	 * 接收毫秒级时间戳字符串——>LocalDateTime
@@ -83,7 +79,6 @@ public class JacksonCustomizerConfig {
 			}
 		};
 	}
-
 	/**
 	 * description:java.util.Date转换器
 	 * 接收毫秒级时间戳字符串——>Date
@@ -101,5 +96,4 @@ public class JacksonCustomizerConfig {
 			}
 		};
 	}
-
 }
