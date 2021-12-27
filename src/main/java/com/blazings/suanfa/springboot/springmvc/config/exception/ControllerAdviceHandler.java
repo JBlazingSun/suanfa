@@ -2,13 +2,16 @@ package com.blazings.suanfa.springboot.springmvc.config.exception;
 
 import cn.hutool.core.util.StrUtil;
 import com.blazings.suanfa.springboot.springmvc.entity.User;
+import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -21,9 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -54,17 +55,17 @@ public class ControllerAdviceHandler {
 	public ResponseEntity<String> handleValidationException(Exception e) {
 		String logMsg = getErrorLogMsg(e);
 		String msg = "";
+		//对象参数接收请求体校验不通过会抛出 MethodArgumentNotValidException
 		if (e instanceof MethodArgumentNotValidException) {
 			MethodArgumentNotValidException t = (MethodArgumentNotValidException) e;
 			msg = getBindingResultMsg(t.getBindingResult());
+			//请求参数绑定到对象上校验不通过会抛出 BindException
 		} else if (e instanceof BindException) {
 			BindException t = (BindException) e;
 			msg = getBindingResultMsg(t.getBindingResult());
+			//普通参数校验校验不通过会抛出 ConstraintViolationException
 		} else if (e instanceof ConstraintViolationException) {
-			ConstraintViolationException t = (ConstraintViolationException) e;
-			msg = t.getConstraintViolations().stream()
-				.map(ConstraintViolation::getMessage)
-				.collect(Collectors.joining(","));
+			msg = getConstraintViolationExceptionMsg((ConstraintViolationException) e);
 		} else if (e instanceof MissingServletRequestParameterException) {
 			MissingServletRequestParameterException t = (MissingServletRequestParameterException) e;
 			msg = t.getParameterName() + " 不能为空";
@@ -78,9 +79,29 @@ public class ControllerAdviceHandler {
 //		log.warn("参数校验不通过, {}, msg: {}", logMsg, msg);
 		return ResponseEntity.ok(msg);
 	}
+	private String getConstraintViolationExceptionMsg(ConstraintViolationException e) {
+		ArrayList<@Nullable String> errorList = Lists.newArrayList();
+		e.getConstraintViolations().forEach(c -> {
+			errorList.add(c.getPropertyPath()+c.getMessage());
+		});
+		return errorList.stream()
+			.map(Object::toString)
+			.collect(Collectors.joining(","));
+	}
 
+	private String getBindingResultMsg(BindingResult result) {
+		ArrayList<@Nullable String> errorList = Lists.newArrayList();
+		result.getAllErrors().forEach(objectError -> {
+			FieldError fieldError = (FieldError) objectError;
+			errorList.add(fieldError.getField() + objectError.getDefaultMessage());
+		});
+		return errorList.stream()
+			.map(Object::toString)
+			.collect(Collectors.joining(","));
+	}
 	/**
 	 * 统一处理未知异常
+	 *
 	 * @return
 	 */
 	@ExceptionHandler
@@ -88,12 +109,6 @@ public class ControllerAdviceHandler {
 		String logMsg = getErrorLogMsg(t);
 //		log.error("捕获到未经处理的未知异常, {}", logMsg, t);
 		return ResponseEntity.ok(logMsg);
-	}
-
-	private String getBindingResultMsg(BindingResult result) {
-		return result.getAllErrors().stream()
-			.map(DefaultMessageSourceResolvable::getDefaultMessage)
-			.collect(Collectors.joining(","));
 	}
 	/**
 	 * 异常信息应包含 url + queryString(若有) + 请求参数(这里只能拿到表单提交的参数) + username(若有)
