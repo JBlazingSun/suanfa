@@ -39,25 +39,25 @@ public class RestfulController {
 		return ResponseEntity.ok(map);
 	}
 
-	@GetMapping("SingleParam")
+	@GetMapping("singleParam")
 	public ResponseEntity<String> singleParam(@NotNull @Length(min = 3,max = 5) String param) {
 
 		return ResponseEntity.ok(param);
 	}
 
-	@GetMapping("CrudGet")
+	@GetMapping("getMethod")
 	public ResponseEntity<User> getMethod(@Validated User user) {
 		user.setUser("CrudGet");
 		return ResponseEntity.ok(user);
 	}
 
-	@PostMapping("CrudPost")
+	@PostMapping("postMethod")
 	public ResponseEntity<User> postMethod(@RequestBody User user) {
 		user.setUser("CrudPost");
 		return ResponseEntity.ok(user);
 	}
 
-	@PutMapping("CrudPut")
+	@PutMapping("putMethod")
 	public ResponseEntity<User> putMethod(@RequestBody User user) {
 		user.setUser("修改之后的username");
 		user.setPassword("修改之后的password");
@@ -65,14 +65,14 @@ public class RestfulController {
 		return ResponseEntity.ok(user);
 	}
 
-	@DeleteMapping("CrudDelete")
+	@DeleteMapping("deleteMethod")
 	public ResponseEntity<User> deleteMethod(@RequestBody User user) {
 		user.setUser("deleted");
 		return ResponseEntity.ok(user);
 	}
 
 	@GetMapping("errorTest")
-	public ResponseEntity<User> getPublicMethod(User user) {
+	public ResponseEntity<User> errorTest(User user) {
 		// 抛出自定义异常
 		throw new RestfulErrorTest("test exception", user);
 	}
