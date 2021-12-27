@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -40,26 +41,26 @@ public class RestfulController {
 	}
 
 	@GetMapping("singleParam")
-	public ResponseEntity<String> singleParam(@NotNull @Length(min = 3,max = 5) String param) {
+	public ResponseEntity<String> singleParam(@NotEmpty String paramOne,@NotEmpty String paramTwo,@NotEmpty String paramThree) {
 
-		return ResponseEntity.ok(param);
+		return ResponseEntity.ok(paramOne + " " + paramTwo + " " + paramThree);
 	}
 
 	@GetMapping("getMethod")
 	public ResponseEntity<User> getMethod(@Validated User user) {
-		user.setUser("CrudGet");
+		user.setUserName("CrudGet"+user.getUserName());
 		return ResponseEntity.ok(user);
 	}
 
 	@PostMapping("postMethod")
 	public ResponseEntity<User> postMethod(@RequestBody User user) {
-		user.setUser("CrudPost");
+		user.setUserName("CrudPost");
 		return ResponseEntity.ok(user);
 	}
 
 	@PutMapping("putMethod")
 	public ResponseEntity<User> putMethod(@RequestBody User user) {
-		user.setUser("修改之后的username");
+		user.setUserName("修改之后的username");
 		user.setPassword("修改之后的password");
 		user.setUpdateTime(LocalDateTime.now());
 		return ResponseEntity.ok(user);
@@ -67,7 +68,7 @@ public class RestfulController {
 
 	@DeleteMapping("deleteMethod")
 	public ResponseEntity<User> deleteMethod(@RequestBody User user) {
-		user.setUser("deleted");
+		user.setUserName("deleted");
 		return ResponseEntity.ok(user);
 	}
 
