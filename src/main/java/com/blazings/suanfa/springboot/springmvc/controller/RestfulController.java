@@ -2,6 +2,7 @@ package com.blazings.suanfa.springboot.springmvc.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
+import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerValided;
 import com.blazings.suanfa.springboot.springmvc.config.exception.RestfulErrorTest;
 import com.blazings.suanfa.springboot.springmvc.entity.User;
 import com.google.common.collect.Maps;
@@ -41,7 +42,7 @@ public class RestfulController {
 	}
 
 	@GetMapping("singleParam")
-	public ResponseEntity<String> singleParam(@NotEmpty String paramOne,@NotEmpty String paramTwo,@NotEmpty String paramThree) {
+	public ResponseEntity<String> singleParam(@NotEmpty @ICustomerValided String paramOne, @NotEmpty String paramTwo, @NotEmpty String paramThree) {
 
 		return ResponseEntity.ok(paramOne + " " + paramTwo + " " + paramThree);
 	}
