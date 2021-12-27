@@ -21,7 +21,7 @@ import java.util.HashMap;
 @Validated
 public class RestfulController {
 	@GetMapping("hello")
-	public ResponseEntity<String> Hello() {
+	public ResponseEntity<String> hello() {
 		// 获取秒数, 10位时间戳
 		Long second = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
 		// 获取毫秒数, 13位时间戳
