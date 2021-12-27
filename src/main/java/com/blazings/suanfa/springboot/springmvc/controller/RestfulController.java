@@ -30,7 +30,7 @@ public class RestfulController {
 	}
 
 	@GetMapping("hello12")
-	public ResponseEntity<HashMap<@Nullable String, @Nullable Object>> Hello12() {
+	public ResponseEntity<HashMap<@Nullable String, @Nullable Object>> hello12() {
 		LocalDateTime time = LocalDateTimeUtil.of(System.currentTimeMillis());
 		HashMap<@Nullable String, @Nullable Object> map = Maps.newHashMap();
 		map.put("hello", null);
@@ -40,25 +40,25 @@ public class RestfulController {
 	}
 
 	@GetMapping("SingleParam")
-	public ResponseEntity<String> SingleParam(@NotNull @Length(min = 3,max = 5) String param) {
+	public ResponseEntity<String> singleParam(@NotNull @Length(min = 3,max = 5) String param) {
 
 		return ResponseEntity.ok(param);
 	}
 
 	@GetMapping("CrudGet")
-	public ResponseEntity<User> GetMethod(@Validated User user) {
+	public ResponseEntity<User> getMethod(@Validated User user) {
 		user.setUser("CrudGet");
 		return ResponseEntity.ok(user);
 	}
 
 	@PostMapping("CrudPost")
-	public ResponseEntity<User> PostMethod(@RequestBody User user) {
+	public ResponseEntity<User> postMethod(@RequestBody User user) {
 		user.setUser("CrudPost");
 		return ResponseEntity.ok(user);
 	}
 
 	@PutMapping("CrudPut")
-	public ResponseEntity<User> PutMethod(@RequestBody User user) {
+	public ResponseEntity<User> putMethod(@RequestBody User user) {
 		user.setUser("修改之后的username");
 		user.setPassword("修改之后的password");
 		user.setUpdateTime(LocalDateTime.now());
@@ -66,13 +66,13 @@ public class RestfulController {
 	}
 
 	@DeleteMapping("CrudDelete")
-	public ResponseEntity<User> DeleteMethod(@RequestBody User user) {
+	public ResponseEntity<User> deleteMethod(@RequestBody User user) {
 		user.setUser("deleted");
 		return ResponseEntity.ok(user);
 	}
 
-	@GetMapping("errortest")
-	public ResponseEntity<User> GetPublicMethod(User user) {
+	@GetMapping("errorTest")
+	public ResponseEntity<User> getPublicMethod(User user) {
 		// 抛出自定义异常
 		throw new RestfulErrorTest("test exception", user);
 	}
