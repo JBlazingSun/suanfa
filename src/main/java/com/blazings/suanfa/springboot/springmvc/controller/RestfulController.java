@@ -7,6 +7,7 @@ import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerGroup
 import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerValided;
 import com.blazings.suanfa.springboot.springmvc.config.exception.RestfulErrorTest;
 import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
+import com.blazings.suanfa.springboot.springmvc.entity.ModelValidMultField;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,11 @@ public class RestfulController {
 		return ResponseEntity.ok(map);
 	}
 
+	@GetMapping("multiField")
+	public ResponseEntity<ModelValidMultField> multiField(@Validated ModelValidMultField field) {
+		return ResponseEntity.ok(field);
+	}
+
 	@GetMapping("singleParam")
 	public ResponseEntity<String> singleParam(@NotEmpty @ICustomerValided String paramOne, @NotEmpty String paramTwo, @NotEmpty String paramThree) {
 
@@ -49,13 +55,13 @@ public class RestfulController {
 
 	@GetMapping("getMethod")
 	public ResponseEntity<MVCUser> getMethod(@Validated(ICustomerGroupGet.class) MVCUser mvcUser) {
-		mvcUser.setUserName("CrudGet"+ mvcUser.getUserName());
+		mvcUser.setUserName("CrudGet" + mvcUser.getUserName());
 		return ResponseEntity.ok(mvcUser);
 	}
 
 	@PostMapping("postMethod")
 	public ResponseEntity<MVCUser> postMethod(@RequestBody @Validated(ICustomerGroupUpdate.class) MVCUser mvcUser) {
-		mvcUser.setUserName("CrudPost"+mvcUser.getUserName());
+		mvcUser.setUserName("CrudPost" + mvcUser.getUserName());
 		return ResponseEntity.ok(mvcUser);
 	}
 
