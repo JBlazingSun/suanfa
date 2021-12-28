@@ -1,7 +1,7 @@
 package com.blazings.suanfa.springboot.springmvc.config.exception;
 
 import cn.hutool.core.util.StrUtil;
-import com.blazings.suanfa.springboot.springmvc.entity.User;
+import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +36,8 @@ public class ControllerAdviceHandler {
 
 	@ExceptionHandler(RestfulErrorTest.class)
 	@ResponseStatus(HttpStatus.OK)
-	public User RestfulErrorTest(RestfulErrorTest restfulErrorTest) {
-		return restfulErrorTest.getUser();
+	public MVCUser RestfulErrorTest(RestfulErrorTest restfulErrorTest) {
+		return restfulErrorTest.getMVCUser();
 	}
 
 	/**
