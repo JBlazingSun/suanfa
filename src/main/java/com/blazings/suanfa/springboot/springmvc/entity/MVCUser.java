@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class MVCUser {
 	@NotEmpty(groups = ICustomerGroupGet.class)
 	@ICustomerValided(message = "自定义注解",groups = ICustomerGroupGet.class)
-	@Length(min = 2, groups = ICustomerGroupUpdate.class)
+	@Length(min = 3, groups = ICustomerGroupUpdate.class)
 	String userName;
 	String password;
 	LocalDateTime updateTime;

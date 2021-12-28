@@ -53,6 +53,7 @@ public class ControllerAdviceHandler {
 		MethodArgumentNotValidException.class,
 		ServletRequestBindingException.class,
 		BindException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<String> handleValidationException(Exception e) {
 		String logMsg = getErrorLogMsg(e);
 		String msg = "";
