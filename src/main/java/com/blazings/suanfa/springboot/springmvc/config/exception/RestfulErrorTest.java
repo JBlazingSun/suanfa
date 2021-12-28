@@ -1,15 +1,15 @@
 package com.blazings.suanfa.springboot.springmvc.config.exception;
 
-import com.blazings.suanfa.springboot.springmvc.entity.User;
+import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
 import lombok.Data;
 
 @Data
 public class RestfulErrorTest extends RuntimeException {
 
-	User user;
+	MVCUser MVCUser;
 
-	public RestfulErrorTest(String message, User user) {
+	public RestfulErrorTest(String message, MVCUser MVCUser) {
 		super(message);
-		this.setUser(user);
+		this.setMVCUser(MVCUser);
 	}
 }

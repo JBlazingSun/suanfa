@@ -2,18 +2,18 @@ package com.blazings.suanfa.springboot.springmvc.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
+import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerGroupGet;
+import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerGroupUpdate;
 import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerValided;
 import com.blazings.suanfa.springboot.springmvc.config.exception.RestfulErrorTest;
-import com.blazings.suanfa.springboot.springmvc.entity.User;
+import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.HashMap;
@@ -48,34 +48,34 @@ public class RestfulController {
 	}
 
 	@GetMapping("getMethod")
-	public ResponseEntity<User> getMethod(@Validated User user) {
-		user.setUserName("CrudGet"+user.getUserName());
-		return ResponseEntity.ok(user);
+	public ResponseEntity<MVCUser> getMethod(@Validated(ICustomerGroupGet.class) MVCUser mvcUser) {
+		mvcUser.setUserName("CrudGet"+ mvcUser.getUserName());
+		return ResponseEntity.ok(mvcUser);
 	}
 
 	@PostMapping("postMethod")
-	public ResponseEntity<User> postMethod(@RequestBody User user) {
-		user.setUserName("CrudPost");
-		return ResponseEntity.ok(user);
+	public ResponseEntity<MVCUser> postMethod(@RequestBody @Validated(ICustomerGroupUpdate.class) MVCUser mvcUser) {
+		mvcUser.setUserName("CrudPost"+mvcUser.getUserName());
+		return ResponseEntity.ok(mvcUser);
 	}
 
 	@PutMapping("putMethod")
-	public ResponseEntity<User> putMethod(@RequestBody User user) {
-		user.setUserName("修改之后的username");
-		user.setPassword("修改之后的password");
-		user.setUpdateTime(LocalDateTime.now());
-		return ResponseEntity.ok(user);
+	public ResponseEntity<MVCUser> putMethod(@RequestBody MVCUser mvcUser) {
+		mvcUser.setUserName("修改之后的username");
+		mvcUser.setPassword("修改之后的password");
+		mvcUser.setUpdateTime(LocalDateTime.now());
+		return ResponseEntity.ok(mvcUser);
 	}
 
 	@DeleteMapping("deleteMethod")
-	public ResponseEntity<User> deleteMethod(@RequestBody User user) {
-		user.setUserName("deleted");
-		return ResponseEntity.ok(user);
+	public ResponseEntity<MVCUser> deleteMethod(@RequestBody MVCUser mvcUser) {
+		mvcUser.setUserName("deleted");
+		return ResponseEntity.ok(mvcUser);
 	}
 
 	@GetMapping("errorTest")
-	public ResponseEntity<User> errorTest(User user) {
+	public ResponseEntity<MVCUser> errorTest(MVCUser mvcUser) {
 		// 抛出自定义异常
-		throw new RestfulErrorTest("test exception", user);
+		throw new RestfulErrorTest("test exception", mvcUser);
 	}
 }

@@ -17,7 +17,7 @@ public class CustomerValid implements ConstraintValidator<ICustomerValided, Obje
 
 	@Override
 	public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-		if (o.equals("customer")) {
+		if (o.equals("c")) {
 			return true;
 		}
 		return false;
