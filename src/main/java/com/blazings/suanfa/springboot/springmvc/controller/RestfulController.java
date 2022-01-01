@@ -24,33 +24,33 @@ import java.util.HashMap;
 @Validated
 public class RestfulController {
 	@GetMapping("hello")
-	public ResponseEntity<String> hello() {
+	public String hello() {
 		// 获取秒数, 10位时间戳
 		Long second = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
 		// 获取毫秒数, 13位时间戳
 		Long milliSecond = LocalDateTimeUtil.toEpochMilli(LocalDateTime.now());
-		return ResponseEntity.ok("hello  " + second + " " + milliSecond);
+		return "hello  " + second + " " + milliSecond;
 	}
 
 	@GetMapping("hello12")
-	public ResponseEntity<HashMap<@Nullable String, @Nullable Object>> hello12() {
+	public HashMap<@Nullable String, @Nullable Object> hello12() {
 		LocalDateTime time = LocalDateTimeUtil.of(System.currentTimeMillis());
 		HashMap<@Nullable String, @Nullable Object> map = Maps.newHashMap();
 		map.put("hello", null);
 		map.put("DateUtil.now", DateUtil.now());
 		map.put("LocalDateTime time", time);
-		return ResponseEntity.ok(map);
+		return map;
 	}
 
 	@GetMapping("multiField")
-	public ResponseEntity<ModelValidMultField> multiField(@Validated ModelValidMultField field) {
-		return ResponseEntity.ok(field);
+	public ModelValidMultField multiField(@Validated ModelValidMultField field) {
+		return field;
 	}
 
 	@GetMapping("singleParam")
-	public ResponseEntity<String> singleParam(@NotEmpty @ICustomerValided String paramOne, @NotEmpty String paramTwo, @NotEmpty String paramThree) {
+	public String singleParam(@NotEmpty @ICustomerValided String paramOne, @NotEmpty String paramTwo, @NotEmpty String paramThree) {
 
-		return ResponseEntity.ok(paramOne + " " + paramTwo + " " + paramThree);
+		return paramOne + " " + paramTwo + " " + paramThree;
 	}
 
 	@GetMapping("getMethod")

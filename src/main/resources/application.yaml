@@ -53,5 +53,5 @@ xxl:
 #      logretentiondays:
 logging:
   level:
-    root: INFO
+    root: info
     druid.sql.Statement: DEBUG

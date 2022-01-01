@@ -1,13 +1,15 @@
-package com.blazings.suanfa.springboot.springmvc.config.exception;
+package com.blazings.suanfa.springboot.springmvc.config.mvcconfig;
 
 import cn.hutool.core.util.StrUtil;
+import com.blazings.suanfa.springboot.springmvc.config.exception.RestfulErrorTest;
 import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
+import com.blazings.suanfa.springboot.springmvc.entity.ResultData;
+import com.blazings.suanfa.springboot.springmvc.entity.ReturnCode;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -36,8 +38,9 @@ public class ControllerAdviceHandler {
 
 	@ExceptionHandler(RestfulErrorTest.class)
 	@ResponseStatus(HttpStatus.OK)
-	public MVCUser RestfulErrorTest(RestfulErrorTest restfulErrorTest) {
-		return restfulErrorTest.getMVCUser();
+	public ResultData<MVCUser> RestfulErrorTest(RestfulErrorTest restfulErrorTest) {
+		restfulErrorTest.getMVCUser().setUserName("ExceptionHandler-RestfulErrorTest");
+		return ResultData.fail(ReturnCode.RC400.getCode(), "ExceptionHandler-RestfulErrorTest");
 	}
 
 	/**
@@ -54,8 +57,8 @@ public class ControllerAdviceHandler {
 		ServletRequestBindingException.class,
 		BindException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ResponseEntity<String> handleValidationException(Exception e) {
-		String logMsg = getErrorLogMsg(e);
+	public ResultData<String> handleValidationException(Exception e) {
+//		String logMsg = getErrorLogMsg(e);
 		String msg = "";
 		//对象参数接收请求体校验不通过会抛出 MethodArgumentNotValidException
 		if (e instanceof MethodArgumentNotValidException) {
@@ -79,12 +82,13 @@ public class ControllerAdviceHandler {
 			return handleUnknownException(e);
 		}
 //		log.warn("参数校验不通过, {}, msg: {}", logMsg, msg);
-		return ResponseEntity.ok(msg);
+		return ResultData.fail(ReturnCode.RC500.getCode(), msg);
 	}
+
 	private String getConstraintViolationExceptionMsg(ConstraintViolationException e) {
 		ArrayList<@Nullable String> errorList = Lists.newArrayList();
 		e.getConstraintViolations().forEach(c -> {
-			errorList.add(c.getPropertyPath()+c.getMessage());
+			errorList.add(c.getPropertyPath() + c.getMessage());
 		});
 		return errorList.stream()
 			.map(Object::toString)
@@ -101,21 +105,23 @@ public class ControllerAdviceHandler {
 			.map(Object::toString)
 			.collect(Collectors.joining(","));
 	}
+
 	/**
 	 * 统一处理未知异常
 	 *
 	 * @return
 	 */
 	@ExceptionHandler
-	public ResponseEntity<String> handleUnknownException(Throwable t) {
-		String logMsg = getErrorLogMsg(t);
+	public ResultData<String> handleUnknownException(Throwable t) {
+		String logMsg = String.valueOf(getErrorLogMsg(t));
 //		log.error("捕获到未经处理的未知异常, {}", logMsg, t);
-		return ResponseEntity.ok(logMsg);
+		return ResultData.fail(ReturnCode.RC500.getCode(), logMsg);
 	}
+
 	/**
 	 * 异常信息应包含 url + queryString(若有) + 请求参数(这里只能拿到表单提交的参数) + username(若有)
 	 */
-	private String getErrorLogMsg(Throwable t) {
+	private ResultData<String> getErrorLogMsg(Throwable t) {
 		StringBuilder errorLogMsg = new StringBuilder();
 		// url，包括查询 queryString
 		errorLogMsg.append("url: ").append(request.getRequestURL().toString());
@@ -136,7 +142,7 @@ public class ControllerAdviceHandler {
 		if (StrUtil.isNotBlank(username)) {
 			errorLogMsg.insert(0, "username: " + username + ", ");
 		}
-		return errorLogMsg.toString();
+		return ResultData.fail(ReturnCode.RC400.getCode(), errorLogMsg.toString());
 	}
 
 	private String getUsername() {

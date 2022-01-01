@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = CustomerValid.class)
 public @interface ICustomerValided {
-	String message() default "参数不正确";
+	String message() default "自定义注解的参数不正确, 正确是c";
 
 	Class<?>[] groups() default {};
 
