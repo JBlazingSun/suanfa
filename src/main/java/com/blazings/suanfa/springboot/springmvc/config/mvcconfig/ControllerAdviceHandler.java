@@ -12,7 +12,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -82,7 +82,7 @@ public class ControllerAdviceHandler {
 			return handleUnknownException(e);
 		}
 //		log.warn("参数校验不通过, {}, msg: {}", logMsg, msg);
-		return ResultData.fail(ReturnCode.RC500.getCode(), msg);
+		return ResultData.fail(ReturnCode.RC400.getCode(), msg);
 	}
 
 	private String getConstraintViolationExceptionMsg(ConstraintViolationException e) {
@@ -97,10 +97,9 @@ public class ControllerAdviceHandler {
 
 	private String getBindingResultMsg(BindingResult result) {
 		ArrayList<@Nullable String> errorList = Lists.newArrayList();
-		result.getAllErrors().forEach(objectError -> {
-			FieldError fieldError = (FieldError) objectError;
-			errorList.add(fieldError.getField() + objectError.getDefaultMessage());
-		});
+		for (ObjectError allError : result.getAllErrors()) {
+			errorList.add(allError.getObjectName()+"中的字段" + allError.getDefaultMessage());
+		}
 		return errorList.stream()
 			.map(Object::toString)
 			.collect(Collectors.joining(","));
