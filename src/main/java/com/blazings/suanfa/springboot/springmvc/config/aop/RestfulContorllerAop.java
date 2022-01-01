@@ -1,5 +1,6 @@
 package com.blazings.suanfa.springboot.springmvc.config.aop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Aspect
 @Configuration
+@Slf4j
 public class RestfulContorllerAop {
 	/**
 	 * class 下的所有方法
@@ -17,8 +19,7 @@ public class RestfulContorllerAop {
 	 */
 	@Around("execution(* com.blazings.suanfa.springboot.springmvc.controller.RestfulController..*(..))")
 	public Object RestfulAop(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		System.out.println(
-			"RestfulContorllerAop before " + proceedingJoinPoint.getSignature().getName());
+		log.info("RestfulContorllerAop before " + proceedingJoinPoint.getSignature().getName());
 
 		for (Object arg : proceedingJoinPoint.getArgs()) {
 			System.out.println(arg);
@@ -26,8 +27,7 @@ public class RestfulContorllerAop {
 
 		Object proceed = proceedingJoinPoint.proceed();
 
-		System.out.println(
-			"RestfulContorllerAop after " + proceedingJoinPoint.getSignature().getName());
+		log.info("RestfulContorllerAop after " + proceedingJoinPoint.getSignature().getName());
 		return proceed;
 	}
 }
