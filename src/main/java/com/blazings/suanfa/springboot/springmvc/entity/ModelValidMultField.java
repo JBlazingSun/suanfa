@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 @Data
-@MultiField
+@MultiField(message = "endTime结束时间要大于startTime开始时间")
 public class ModelValidMultField {
 	LocalDateTime startTime;
 	LocalDateTime endTime;

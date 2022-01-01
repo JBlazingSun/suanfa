@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 @Data
 public class MVCUser {
 	@NotEmpty(groups = ICustomerGroupGet.class)
-	@ICustomerValided(message = "自定义注解",groups = ICustomerGroupGet.class)
+	@ICustomerValided(message = "userName自定义注解,正确为c",groups = ICustomerGroupGet.class)
 	@Length(min = 3, groups = ICustomerGroupUpdate.class)
 	String userName;
 	String password;
 	LocalDateTime updateTime;
-	@NotNull
+	@NotNull(message = "number不能为空")
 	@PositiveOrZero()
 	BigInteger number;
 }
