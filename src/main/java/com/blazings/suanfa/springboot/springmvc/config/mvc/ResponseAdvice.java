@@ -1,4 +1,4 @@
-package com.blazings.suanfa.springboot.springmvc.config.mvcconfig;
+package com.blazings.suanfa.springboot.springmvc.config.mvc;
 
 import com.blazings.suanfa.springboot.springmvc.entity.ResultData;
 import com.fasterxml.jackson.databind.ObjectMapper;

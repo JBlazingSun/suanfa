@@ -1,4 +1,4 @@
-package com.blazings.suanfa.springboot.springmvc.config.mvcconfig;
+package com.blazings.suanfa.springboot.springmvc.config.mvc;
 
 import cn.hutool.core.util.StrUtil;
 import com.blazings.suanfa.springboot.springmvc.config.exception.RestfulErrorTest;
