@@ -54,15 +54,15 @@ public class RestfulController {
 	}
 
 	@GetMapping("getMethod")
-	public ResponseEntity<MVCUser> getMethod(@Validated(ICustomerGroupGet.class) MVCUser mvcUser) {
+	public MVCUser getMethod(@Validated(ICustomerGroupGet.class) MVCUser mvcUser) {
 		mvcUser.setUserName("CrudGet" + mvcUser.getUserName());
-		return ResponseEntity.ok(mvcUser);
+		return mvcUser;
 	}
 
 	@PostMapping("postMethod")
-	public ResponseEntity<MVCUser> postMethod(@RequestBody @Validated(ICustomerGroupUpdate.class) MVCUser mvcUser) {
+	public MVCUser postMethod(@RequestBody @Validated(ICustomerGroupUpdate.class) MVCUser mvcUser) {
 		mvcUser.setUserName("CrudPost" + mvcUser.getUserName());
-		return ResponseEntity.ok(mvcUser);
+		return mvcUser;
 	}
 
 	@PutMapping("putMethod")
