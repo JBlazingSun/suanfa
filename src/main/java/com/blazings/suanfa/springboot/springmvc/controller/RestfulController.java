@@ -66,11 +66,11 @@ public class RestfulController {
 	}
 
 	@PutMapping("putMethod")
-	public ResponseEntity<MVCUser> putMethod(@RequestBody MVCUser mvcUser) {
+	public MVCUser putMethod(@RequestBody MVCUser mvcUser) {
 		mvcUser.setUserName("修改之后的username");
 		mvcUser.setPassword("修改之后的password");
 		mvcUser.setUpdateTime(LocalDateTime.now());
-		return ResponseEntity.ok(mvcUser);
+		return mvcUser;
 	}
 
 	@DeleteMapping("deleteMethod")
