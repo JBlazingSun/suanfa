@@ -18,4 +18,10 @@ public class Test {
 		ResultData r = Forest.get("/restful/hello").port(8080).execute(ResultData.class);
 		return r;
 	}
+
+	@GetMapping("hello")
+	public String hello() {
+		String r = Forest.get("/mall/hello").port(8081).executeAsString();
+		return r;
+	}
 }
