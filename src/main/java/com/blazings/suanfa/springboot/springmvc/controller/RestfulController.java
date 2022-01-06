@@ -74,9 +74,9 @@ public class RestfulController {
 	}
 
 	@DeleteMapping("deleteMethod")
-	public ResponseEntity<MVCUser> deleteMethod(@RequestBody MVCUser mvcUser) {
+	public MVCUser deleteMethod(@RequestBody MVCUser mvcUser) {
 		mvcUser.setUserName("deleted");
-		return ResponseEntity.ok(mvcUser);
+		return mvcUser;
 	}
 
 	@GetMapping("errorTest")
