@@ -1,4 +1,4 @@
-package com.blazings.suanfa.component.mybatisplus.mpj.entity;
+package com.blazings.suanfa.sql.tujie.entity;
 
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -11,7 +11,7 @@ import lombok.Data;
  * (User)???????
  *
  * @author makejava
- * @since 2021-12-20 15:24:54
+ * @since 2022-01-07 15:25:42
  */
 @SuppressWarnings("serial")
 @Data

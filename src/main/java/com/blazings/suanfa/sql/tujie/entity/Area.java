@@ -1,4 +1,4 @@
-package com.blazings.suanfa.component.mybatisplus.mpj.entity;
+package com.blazings.suanfa.sql.tujie.entity;
 
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -11,11 +11,11 @@ import lombok.Data;
  * (Area)???????
  *
  * @author makejava
- * @since 2021-12-20 15:24:35
+ * @since 2022-01-07 15:13:23
  */
 @SuppressWarnings("serial")
 @Data
-public class Area extends Model<Area>{
+public class Area extends Model<Area> {
 
 	private Integer id;
 

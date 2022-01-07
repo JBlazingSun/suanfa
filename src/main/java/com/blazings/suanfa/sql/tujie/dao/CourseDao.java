@@ -1,17 +1,17 @@
 package com.blazings.suanfa.sql.tujie.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.blazings.suanfa.sql.tujie.entity.Course;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
+import com.blazings.suanfa.sql.tujie.entity.Course;
+
 /**
- * (Course)�����ݿ���ʲ�
+ * (Course)???????????
  *
  * @author makejava
- * @since 2021-12-16 21:50:01
+ * @since 2022-01-07 15:13:23
  */
 @Mapper
 public interface CourseDao extends BaseMapper<Course> {

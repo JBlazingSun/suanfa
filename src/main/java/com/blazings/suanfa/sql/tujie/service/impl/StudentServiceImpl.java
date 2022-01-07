@@ -7,10 +7,10 @@ import com.blazings.suanfa.sql.tujie.service.StudentService;
 import org.springframework.stereotype.Service;
 
 /**
- * (Student)�����ʵ����
+ * (Student)??????????
  *
  * @author makejava
- * @since 2021-12-16 21:50:02
+ * @since 2022-01-07 15:13:25
  */
 @Service("studentService")
 public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> implements StudentService {

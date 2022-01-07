@@ -7,10 +7,10 @@ import com.blazings.suanfa.sql.tujie.service.ScoreService;
 import org.springframework.stereotype.Service;
 
 /**
- * (Score)�����ʵ����
+ * (Score)??????????
  *
  * @author makejava
- * @since 2021-12-16 21:50:02
+ * @since 2022-01-07 15:13:25
  */
 @Service("scoreService")
 public class ScoreServiceImpl extends ServiceImpl<ScoreDao, Score> implements ScoreService {

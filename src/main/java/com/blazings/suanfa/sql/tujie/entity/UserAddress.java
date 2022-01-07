@@ -1,4 +1,4 @@
-package com.blazings.suanfa.component.mybatisplus.mpj.entity;
+package com.blazings.suanfa.sql.tujie.entity;
 
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -11,11 +11,11 @@ import lombok.Data;
  * (UserAddress)???????
  *
  * @author makejava
- * @since 2021-12-20 15:25:05
+ * @since 2022-01-07 15:26:25
  */
 @SuppressWarnings("serial")
 @Data
-public class UserAddress extends Model<UserAddress>{
+public class UserAddress extends Model<UserAddress> {
 
 	private Integer id;
 

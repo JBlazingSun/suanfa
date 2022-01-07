@@ -7,10 +7,10 @@ import com.blazings.suanfa.sql.tujie.service.CourseService;
 import org.springframework.stereotype.Service;
 
 /**
- * (Course)�����ʵ����
+ * (Course)??????????
  *
  * @author makejava
- * @since 2021-12-16 21:50:01
+ * @since 2022-01-07 15:13:24
  */
 @Service("courseService")
 public class CourseServiceImpl extends ServiceImpl<CourseDao, Course> implements CourseService {

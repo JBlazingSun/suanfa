@@ -2,13 +2,16 @@ package com.blazings.suanfa.sql.tujie.entity;
 
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
- * (Course)��ʵ����
+ * (Course)???????
  *
  * @author makejava
- * @since 2021-12-16 21:50:01
+ * @since 2022-01-07 15:13:23
  */
 @SuppressWarnings("serial")
 @Data
