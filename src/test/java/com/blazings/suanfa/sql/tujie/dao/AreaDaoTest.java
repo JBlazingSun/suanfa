@@ -34,11 +34,6 @@ class AreaDaoTest {
 			.selectAll(User.class)
 			.leftJoin(UserAddress.class,UserAddress::getUserId, User::getId);
 		Page<User> userPage = userDao.selectPage(page, userMPJLambdaWrapper);
-
-		MPJLambdaWrapper<User> join = new MPJLambdaWrapper<User>()
-			.selectAll(User.class)
-			.innerJoin(UserAddress.class,UserAddress::getUserId, User::getId);
-		List<User> users = userDao.selectList(join);
 	}
 
 //	@Test
