@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.blazings.suanfa.sql.tujie.entity.Student;
 
 /**
- * (Student)�����ӿ�
+ * (Student)???????
  *
  * @author makejava
- * @since 2021-12-16 21:50:02
+ * @since 2022-01-07 15:13:25
  */
 public interface StudentService extends IService<Student> {
 

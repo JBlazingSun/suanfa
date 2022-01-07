@@ -1,24 +1,21 @@
-package com.blazings.suanfa.component.mybatisplus.mpj.dao;
+package com.blazings.suanfa.sql.tujie.dao;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.blazings.suanfa.component.mybatisplus.mpj.dto.UserDTO;
-import com.blazings.suanfa.component.mybatisplus.mpj.entity.User;
-import com.blazings.suanfa.component.mybatisplus.mpj.entity.UserAddress;
-import com.github.yulichang.toolkit.MPJWrappers;
+import com.blazings.suanfa.sql.tujie.entity.User;
+import com.blazings.suanfa.sql.tujie.entity.UserAddress;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class UserDaoMPJTest {
+class AreaDaoTest {
+
 	@Resource
 	UserDao userDao;
 
@@ -37,20 +34,21 @@ class UserDaoMPJTest {
 			.selectAll(User.class)
 			.leftJoin(UserAddress.class,UserAddress::getUserId, User::getId);
 		Page<User> userPage = userDao.selectPage(page, userMPJLambdaWrapper);
-	}
 
-	@Test
-	void name1() {
-		MPJLambdaWrapper<UserDTO> er = new MPJLambdaWrapper<UserDTO>()
+		MPJLambdaWrapper<User> join = new MPJLambdaWrapper<User>()
 			.selectAll(User.class)
-			.selectAll(UserAddress.class)
-			.leftJoin(UserAddress.class,UserAddress::getUserId,User::getId)
-			.eq(User::getId, 1);
-		List<UserDTO> dtos = userDao.selectJoinList(UserDTO.class,er);
+			.leftJoin(UserAddress.class,UserAddress::getUserId, User::getId)
+			.eq(UserAddress::getUserId,User::getId);
+		List<User> users = userDao.selectList(join);
 	}
 
-	@Test
-	void name2() {
-
-	}
+//	@Test
+//	void name1() {
+//		MPJLambdaWrapper<UserDTO> er = new MPJLambdaWrapper<UserDTO>()
+//			.selectAll(User.class)
+//			.selectAll(UserAddress.class)
+//			.leftJoin(UserAddress.class,UserAddress::getUserId,User::getId)
+//			.eq(User::getId, 1);
+//		List<UserDTO> dtos = userDao.selectJoinList(UserDTO.class,er);
+//	}
 }
