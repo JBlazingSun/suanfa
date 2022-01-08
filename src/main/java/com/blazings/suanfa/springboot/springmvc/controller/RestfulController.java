@@ -80,7 +80,7 @@ public class RestfulController {
 	}
 
 	@GetMapping("errorTest")
-	public ResponseEntity<MVCUser> errorTest(MVCUser mvcUser) {
+	public MVCUser errorTest(MVCUser mvcUser) {
 		// 抛出自定义异常
 		throw new RestfulErrorTest("test exception", mvcUser);
 	}
