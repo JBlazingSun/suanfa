@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com/blazings/suanfa/component/mybatisplus/userpagination/dao")
 @MapperScan("com/blazings/suanfa/sql/tujie/dao")
 @MapperScan("com/blazings/suanfa/component/mybatisplus/mpj/dao")
+@MapperScan("com/blazings/suanfa/sql/sqlintroduction/dao")
 public class MybatisPlusConfig {
     /**
      * 最新版
