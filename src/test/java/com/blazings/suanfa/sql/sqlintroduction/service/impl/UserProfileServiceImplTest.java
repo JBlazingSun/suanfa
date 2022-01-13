@@ -17,6 +17,11 @@ class UserProfileServiceImplTest {
 	@Autowired
 	UserProfileServiceImpl service;
 
+	@Test
+	void name2() {
+
+	}
+
 	/**
 	 * SQL3 查询结果去重
 	 */
