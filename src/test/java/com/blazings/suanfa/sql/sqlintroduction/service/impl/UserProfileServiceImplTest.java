@@ -2,7 +2,6 @@ package com.blazings.suanfa.sql.sqlintroduction.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.blazings.suanfa.sql.sqlintroduction.entity.UserProfile;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

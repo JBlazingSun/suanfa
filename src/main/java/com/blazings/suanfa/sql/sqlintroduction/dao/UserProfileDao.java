@@ -11,7 +11,7 @@ import com.blazings.suanfa.sql.sqlintroduction.entity.UserProfile;
  * (UserProfile)???????????
  *
  * @author makejava
- * @since 2022-01-12 11:39:27
+ * @since 2022-01-13 10:45:48
  */
 @Mapper
 public interface UserProfileDao extends BaseMapper<UserProfile> {

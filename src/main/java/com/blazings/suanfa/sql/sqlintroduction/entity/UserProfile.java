@@ -11,7 +11,7 @@ import lombok.Data;
  * (UserProfile)???????
  *
  * @author makejava
- * @since 2022-01-12 11:39:28
+ * @since 2022-01-13 10:45:49
  */
 @SuppressWarnings("serial")
 @Data
@@ -28,6 +28,8 @@ public class UserProfile extends Model<UserProfile> {
 	private String university;
 
 	private String province;
+
+	private Float gpa;
 
 
 }
