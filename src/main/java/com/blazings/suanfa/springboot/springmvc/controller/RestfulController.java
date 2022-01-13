@@ -2,6 +2,8 @@ package com.blazings.suanfa.springboot.springmvc.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.cron.CronUtil;
+import cn.hutool.cron.task.Task;
 import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerGroupGet;
 import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerGroupUpdate;
 import com.blazings.suanfa.springboot.springmvc.config.annotation.ICustomerValided;
@@ -9,6 +11,7 @@ import com.blazings.suanfa.springboot.springmvc.config.exception.RestfulErrorTes
 import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
 import com.blazings.suanfa.springboot.springmvc.entity.ModelValidMultField;
 import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +25,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("restful")
 @Validated
+@Slf4j
 public class RestfulController {
 	@GetMapping("hello")
 	public String hello() {
