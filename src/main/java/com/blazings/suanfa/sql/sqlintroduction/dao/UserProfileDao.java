@@ -1,11 +1,11 @@
 package com.blazings.suanfa.sql.sqlintroduction.dao;
 
-import java.util.List;
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Mapper;
 import com.blazings.suanfa.sql.sqlintroduction.entity.UserProfile;
+import com.github.yulichang.base.MPJBaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * (UserProfile)???????????
@@ -14,7 +14,7 @@ import com.blazings.suanfa.sql.sqlintroduction.entity.UserProfile;
  * @since 2022-01-13 10:45:48
  */
 @Mapper
-public interface UserProfileDao extends BaseMapper<UserProfile> {
+public interface UserProfileDao extends MPJBaseMapper<UserProfile> {
 
 	int insertBatch(@Param("entities") List<UserProfile> entities);
 
