@@ -9,7 +9,7 @@ import java.io.Serializable;
  * (QuestionPracticeDetail)表实体类
  *
  * @author makejava
- * @since 2022-01-15 16:19:11
+ * @since 2022-01-15 16:57:22
  */
 @SuppressWarnings("serial")
 public class QuestionPracticeDetail extends Model<QuestionPracticeDetail> {

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * (QuestionPracticeDetail)表服务实现类
  *
  * @author makejava
- * @since 2022-01-15 16:19:12
+ * @since 2022-01-15 16:57:23
  */
 @Service("questionPracticeDetailService")
 public class QuestionPracticeDetailServiceImpl extends ServiceImpl<QuestionPracticeDetailDao, QuestionPracticeDetail> implements QuestionPracticeDetailService {
