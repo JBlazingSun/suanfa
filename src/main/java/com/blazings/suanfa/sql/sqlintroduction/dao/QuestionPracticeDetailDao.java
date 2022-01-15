@@ -1,7 +1,7 @@
 package com.blazings.suanfa.sql.sqlintroduction.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blazings.suanfa.sql.sqlintroduction.entity.QuestionPracticeDetail;
-import com.github.yulichang.base.MPJBaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
  * (QuestionPracticeDetail)表数据库访问层
  *
  * @author makejava
- * @since 2022-01-15 16:19:10
+ * @since 2022-01-15 16:57:22
  */
-public interface QuestionPracticeDetailDao extends MPJBaseMapper<QuestionPracticeDetail> {
+public interface QuestionPracticeDetailDao extends BaseMapper<QuestionPracticeDetail> {
 
 	/**
 	 * 批量新增数据（MyBatis原生foreach方法）

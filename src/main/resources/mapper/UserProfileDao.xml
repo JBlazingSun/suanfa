@@ -8,26 +8,35 @@
         <result property="gender" column="gender" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
         <result property="university" column="university" jdbcType="VARCHAR"/>
-        <result property="province" column="province" jdbcType="VARCHAR"/>
         <result property="gpa" column="gpa" jdbcType="NUMERIC"/>
+        <result property="activeDaysWithin30" column="active_days_within_30" jdbcType="INTEGER"/>
+        <result property="questionCnt" column="question_cnt" jdbcType="INTEGER"/>
+        <result property="answerCnt" column="answer_cnt" jdbcType="INTEGER"/>
     </resultMap>
 
+    <!-- 批量插入 -->
     <insert id="insertBatch" keyProperty="" useGeneratedKeys="true">
-        insert into sqlintroduction.user_profile(id, device_id, gender, age, university, province, gpa)
+        insert into sqlintroduction.user_profile(id, device_id, gender, age, university, gpa, active_days_within_30, question_cnt,
+        answer_cnt)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.id}, #{entity.deviceId}, #{entity.gender}, #{entity.age}, #{entity.university}, #{entity.province}, #{entity.gpa})
+            (#{entity.id}, #{entity.deviceId}, #{entity.gender}, #{entity.age}, #{entity.university}, #{entity.gpa},
+            #{entity.activeDaysWithin30}, #{entity.questionCnt}, #{entity.answerCnt})
         </foreach>
     </insert>
+    <!-- 批量插入或按主键更新 -->
     <insert id="insertOrUpdateBatch" keyProperty="" useGeneratedKeys="true">
-        insert into sqlintroduction.user_profile(id, device_id, gender, age, university, province, gpa)
+        insert into sqlintroduction.user_profile(id, device_id, gender, age, university, gpa, active_days_within_30, question_cnt,
+        answer_cnt)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.id}, #{entity.deviceId}, #{entity.gender}, #{entity.age}, #{entity.university}, #{entity.province}, #{entity.gpa})
+            (#{entity.id}, #{entity.deviceId}, #{entity.gender}, #{entity.age}, #{entity.university}, #{entity.gpa},
+            #{entity.activeDaysWithin30}, #{entity.questionCnt}, #{entity.answerCnt})
         </foreach>
         on duplicate key update
         id = values(id) , device_id = values(device_id) , gender = values(gender) , age = values(age) , university = values(university) ,
-        province = values(province) , gpa = values(gpa)
+        gpa = values(gpa) , active_days_within_30 = values(active_days_within_30) , question_cnt = values(question_cnt) , answer_cnt =
+        values(answer_cnt)
     </insert>
 
 </mapper>

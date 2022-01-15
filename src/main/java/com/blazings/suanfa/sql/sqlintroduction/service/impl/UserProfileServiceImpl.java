@@ -7,10 +7,10 @@ import com.blazings.suanfa.sql.sqlintroduction.service.UserProfileService;
 import org.springframework.stereotype.Service;
 
 /**
- * (UserProfile)??????????
+ * (UserProfile)表服务实现类
  *
  * @author makejava
- * @since 2022-01-13 10:45:49
+ * @since 2022-01-15 16:57:51
  */
 @Service("userProfileService")
 public class UserProfileServiceImpl extends ServiceImpl<UserProfileDao, UserProfile> implements UserProfileService {
