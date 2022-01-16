@@ -26,4 +26,10 @@ class UserProfileDaoTest {
   //			.groupBy("t.university");
   //		List<Map<String, Object>> userProfiles = userProfileDao.selectMaps(group);
   //	}
+  /**
+   * SELECT t.university, qd.difficult_level, COUNT( qp.question_id ) / COUNT( DISTINCT qp.device_id
+   * ) AS avg_answer_cnt FROM user_profile AS t INNER JOIN question_practice_detail AS qp ON
+   * qp.device_id = t.device_id INNER JOIN question_detail AS qd ON qd.question_id = qp.question_id
+   * GROUP BY t.university, qd.difficult_level
+   */
 }
