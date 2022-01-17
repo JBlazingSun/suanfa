@@ -42,7 +42,4 @@ class UserProfileDaoTest {
 	//			.groupBy("t.university");
 	//		List<Map<String, Object>> userProfiles = userProfileDao.selectMaps(group);
 	//	}
-	/**
-	 *
-	 */
 }
