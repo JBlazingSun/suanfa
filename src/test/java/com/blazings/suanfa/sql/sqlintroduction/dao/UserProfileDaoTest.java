@@ -16,6 +16,22 @@ class UserProfileDaoTest {
 	UserProfileDao userProfileDao;
 
 	/**
+	 * SQL24 统计每个用户的平均刷题数
+	 */
+	@Test
+	void name3() {
+		MPJQueryWrapper<UserProfile> group = new MPJQueryWrapper<UserProfile>()
+			.select("t.university",
+				"qd.difficult_level",
+				"COUNT(t.answer_cnt)/COUNT(DISTINCT qpd.device_id)  as avg_answer_cnt")
+			.innerJoin("question_practice_detail as qpd ON t.device_id = qpd.device_id")
+			.innerJoin("question_detail as qd ON qpd.question_id = qd.question_id")
+			.eq("t.university", "山东大学")
+			.groupBy("qd.difficult_level");
+		List<Map<String, Object>> maps = userProfileDao.selectMaps(group);
+	}
+
+	/**
 	 * SQL23 统计每个学校各难度的用户平均刷题数
 	 */
 	@Test
