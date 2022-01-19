@@ -1,10 +1,8 @@
 package com.blazings.suanfa;
 
 import cn.hutool.cron.CronUtil;
-import cn.hutool.cron.task.Task;
 import com.blazings.suanfa.designpattern.observer.SpringObserver.MyPublisher;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
