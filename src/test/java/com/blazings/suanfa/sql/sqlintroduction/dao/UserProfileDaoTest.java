@@ -1,5 +1,6 @@
 package com.blazings.suanfa.sql.sqlintroduction.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.blazings.suanfa.sql.sqlintroduction.entity.UserProfile;
 import com.github.yulichang.query.MPJQueryWrapper;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,32 @@ class UserProfileDaoTest {
 
 	@Resource
 	UserProfileDao userProfileDao;
+
+	/**
+	 *
+	 */
+	@Test
+	void name4() {
+		String sql ="SELECT\n" +
+			"\tuser_profile.device_id,\n" +
+			"\tuser_profile.gender,\n" +
+			"\tuser_profile.age,\n" +
+			"\tuser_profile.gpa \n" +
+			"FROM\n" +
+			"\tuser_profile \n" +
+			"WHERE\n" +
+			"\tuser_profile.university = '山东大学' UNION ALL\n" +
+			"SELECT\n" +
+			"\tuser_profile.device_id,\n" +
+			"\tuser_profile.gender,\n" +
+			"\tuser_profile.age,\n" +
+			"\tuser_profile.gpa \n" +
+			"FROM\n" +
+			"\tuser_profile \n" +
+			"WHERE\n" +
+			"\tuser_profile.gender = 'male'";
+		List<UserProfile> userProfiles = userProfileDao.dynamicSql(sql);
+	}
 
 	/**
 	 * SQL24 统计每个用户的平均刷题数

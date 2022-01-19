@@ -3,6 +3,7 @@ package com.blazings.suanfa.sql.sqlintroduction.dao;
 import com.blazings.suanfa.sql.sqlintroduction.entity.UserProfile;
 import com.github.yulichang.base.MPJBaseMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -31,5 +32,6 @@ public interface UserProfileDao extends MPJBaseMapper<UserProfile> {
 	 */
 	int insertOrUpdateBatch(@Param("entities") List<UserProfile> entities);
 
+	@Select("${sqlStr}")
+	List<UserProfile> dynamicSql(@Param("sqlStr")String sql);
 }
-
