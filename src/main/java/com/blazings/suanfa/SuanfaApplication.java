@@ -1,20 +1,27 @@
 package com.blazings.suanfa;
 
 import cn.hutool.cron.CronUtil;
-import com.blazings.suanfa.designpattern.observer.SpringObserver.MyPublisher;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.Redisson;
+import org.redisson.api.RAtomicDouble;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.Resource;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @Slf4j
 public class SuanfaApplication implements CommandLineRunner {
 
-  @Resource
-  MyPublisher myPublisher;
+//  @Resource
+//  MyPublisher myPublisher;
+
+//  @Resource
+//  RedissonClient client;
 
   public static void main(String[] args) {
     SpringApplication.run(SuanfaApplication.class, args);
@@ -22,8 +29,13 @@ public class SuanfaApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-
     CronUtil.setMatchSecond(true);
     CronUtil.start();
+
+    Config config = Config.fromYAML(new File("src/main/resources/redisson.yaml"));
+    RedissonClient client = Redisson.create(config);
+    RAtomicDouble atomicDouble = client.getAtomicDouble("myDouble");
+    atomicDouble.getAndIncrement();
+    atomicDouble.expire(10, TimeUnit.MINUTES);
   }
 }
