@@ -2,14 +2,15 @@ package com.blazings.suanfa;
 
 import cn.hutool.cron.CronUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.Redisson;
-import org.redisson.api.RAtomicDouble;
-import org.redisson.api.RedissonClient;
-import org.redisson.config.Config;
+//import org.redisson.Redisson;
+//import org.redisson.api.RAtomicDouble;
+//import org.redisson.api.RedissonClient;
+//import org.redisson.config.Config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -32,10 +33,11 @@ public class SuanfaApplication implements CommandLineRunner {
     CronUtil.setMatchSecond(true);
     CronUtil.start();
 
-    Config config = Config.fromYAML(new File("src/main/resources/redisson.yaml"));
-    RedissonClient client = Redisson.create(config);
-    RAtomicDouble atomicDouble = client.getAtomicDouble("myDouble");
-    atomicDouble.getAndIncrement();
-    atomicDouble.expire(10, TimeUnit.MINUTES);
+//    Config config = Config.fromYAML(new File("src/main/resources/redisson.yaml"));
+//    RedissonClient client = Redisson.create(config);
+//    RAtomicDouble atomicDouble = client.getAtomicDouble("myDouble");
+//    atomicDouble.getAndIncrement();
+//    atomicDouble.expire(10, TimeUnit.MINUTES);
+//    log.info(client.getConfig().toYAML());
   }
 }
