@@ -8,7 +8,6 @@ import com.blazings.suanfa.springboot.springmvc.entity.ReturnCode;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -86,7 +85,7 @@ public class ControllerAdviceHandler {
 	}
 
 	private String getConstraintViolationExceptionMsg(ConstraintViolationException e) {
-		ArrayList<@Nullable String> errorList = Lists.newArrayList();
+		ArrayList<String> errorList = Lists.newArrayList();
 		e.getConstraintViolations().forEach(c -> {
 			errorList.add(c.getPropertyPath() + c.getMessage());
 		});
@@ -96,7 +95,7 @@ public class ControllerAdviceHandler {
 	}
 
 	private String getBindingResultMsg(BindingResult result) {
-		ArrayList<@Nullable String> errorList = Lists.newArrayList();
+		ArrayList<String> errorList = Lists.newArrayList();
 		for (ObjectError allError : result.getAllErrors()) {
 			errorList.add(allError.getObjectName()+"中的字段" + allError.getDefaultMessage());
 		}

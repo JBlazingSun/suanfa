@@ -12,7 +12,6 @@ import com.blazings.suanfa.springboot.springmvc.entity.MVCUser;
 import com.blazings.suanfa.springboot.springmvc.entity.ModelValidMultField;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +36,9 @@ public class RestfulController {
 	}
 
 	@GetMapping("hello12")
-	public HashMap<@Nullable String, @Nullable Object> hello12() {
+	public HashMap<String,  Object> hello12() {
 		LocalDateTime time = LocalDateTimeUtil.of(System.currentTimeMillis());
-		HashMap<@Nullable String, @Nullable Object> map = Maps.newHashMap();
+		HashMap< String, Object> map = Maps.newHashMap();
 		map.put("hello", null);
 		map.put("DateUtil.now", DateUtil.now());
 		map.put("LocalDateTime time", time);
