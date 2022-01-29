@@ -2,9 +2,12 @@ package com.blazings.suanfa;
 
 import cn.hutool.cron.CronUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RedissonClient;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import javax.annotation.Resource;
 
 @SpringBootApplication
 @Slf4j
@@ -13,7 +16,7 @@ public class SuanfaApplication implements CommandLineRunner {
   //  @Resource
   //  MyPublisher myPublisher;
 
-  //  @Resource RedissonClient client;
+  @Resource RedissonClient client;
 
   public static void main(String[] args) {
     SpringApplication.run(SuanfaApplication.class, args);
@@ -29,6 +32,7 @@ public class SuanfaApplication implements CommandLineRunner {
     //    RAtomicDouble atomicDouble = client.getAtomicDouble("myDouble");
     //    atomicDouble.getAndIncrement();
     //    atomicDouble.expire(10, TimeUnit.MINUTES);
-    //    log.info(client.getConfig().toYAML());
+    log.info(client.getConfig().toYAML());
   }
+
 }
