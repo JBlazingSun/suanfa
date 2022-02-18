@@ -1,4 +1,4 @@
-package com.blazings.mall.controller;
+package src.main.java.com.blazings.mall.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
