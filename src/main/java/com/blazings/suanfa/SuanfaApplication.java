@@ -27,7 +27,7 @@ public class SuanfaApplication implements CommandLineRunner {
     CronUtil.setMatchSecond(true);
     CronUtil.start();
 
-    //    Config config = Config.fromYAML(new File("src/main/resources/redisson.yaml"));
+    //    Config config = Config.fromYAML(new File("src/main/resources/redisson.yml"));
     //    RedissonClient client = Redisson.create(config);
     //    RAtomicDouble atomicDouble = client.getAtomicDouble("myDouble");
     //    atomicDouble.getAndIncrement();
