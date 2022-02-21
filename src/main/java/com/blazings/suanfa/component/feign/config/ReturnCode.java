@@ -1,4 +1,4 @@
-package com.blazings.suanfa.component.forest.config;
+package com.blazings.suanfa.component.feign.config;
 
 public enum ReturnCode {
 	/**
