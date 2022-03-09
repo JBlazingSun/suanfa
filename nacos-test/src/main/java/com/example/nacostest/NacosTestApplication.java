@@ -1,13 +1,13 @@
-package main.java.com.blazings.mall;
+package com.example.nacostest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MallApplication {
+public class NacosTestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MallApplication.class, args);
+		SpringApplication.run(NacosTestApplication.class, args);
 	}
 
 }
