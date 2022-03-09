@@ -1,0 +1,9 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: xinyi.blazings.win:58848
