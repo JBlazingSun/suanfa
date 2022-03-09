@@ -1,4 +1,4 @@
-package com.blazings.mall;
+package main.java.com.blazings.mall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
