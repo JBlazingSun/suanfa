@@ -8,11 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com/blazings/suanfa/component/mybatisplus/samplewrapper/dao")
-@MapperScan("com/blazings/suanfa/component/mybatisplus/userpagination/dao")
-@MapperScan("com/blazings/suanfa/sql/tujie/dao")
-@MapperScan("com/blazings/suanfa/component/mybatisplus/mpj/dao")
-@MapperScan("com/blazings/suanfa/sql/sqlintroduction/dao")
+@MapperScan("com/example/mybatisplus/samplewrapper/dao")
+@MapperScan("com/example/mybatisplus/userpagination/dao")
 public class MybatisPlusConfig {
     /**
      * 最新版
