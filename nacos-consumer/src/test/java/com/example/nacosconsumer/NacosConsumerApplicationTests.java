@@ -1,10 +1,10 @@
-package com.example.nacostest;
+package com.example.nacosconsumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NacosTestApplicationTests {
+class NacosConsumerApplicationTests {
 
 	@Test
 	void contextLoads() {
