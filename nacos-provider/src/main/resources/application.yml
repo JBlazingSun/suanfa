@@ -5,5 +5,8 @@ spring:
     name: nacos-provider
   cloud:
     nacos:
+      config:
+        server-addr: xinyi.blazings.win:58848
+        file-extension: yaml
       discovery:
         server-addr: xinyi.blazings.win:58848

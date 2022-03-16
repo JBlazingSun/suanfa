@@ -1,9 +1,11 @@
 package com.example.nacosconsumer.controller;
 
+import com.example.nacosconsumer.enitiy.NacosConfig;
 import com.example.nacosconsumer.enitiy.TaobaoTime;
 import com.example.nacosconsumer.feign.Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class Consumer {
 	@Autowired
 	Provider provider;
+
+	@Value("")
+	NacosConfig nacosConfig;
 
 	@GetMapping("get")
 	public String GetMethod() {
@@ -29,5 +34,12 @@ public class Consumer {
 	public String PostObjectMethod(@RequestBody TaobaoTime time) {
 		String parm = provider.GetObjectParm(time);
 		return parm;
+	}
+
+	@GetMapping("getConfig")
+	public NacosConfig GetConfig() {
+		NacosConfig config = new NacosConfig();
+
+		return config;
 	}
 }
