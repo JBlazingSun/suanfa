@@ -11,12 +11,12 @@ public class NacosProviderCtrl {
 	@GetMapping("get")
 	public String PublicMethodGet() {
 
-		return "get method " + System.currentTimeMillis();
+		return "provider get-method " + System.currentTimeMillis();
 	}
 
 	@PostMapping("post")
 	public String ProviderMethod(@RequestParam String getParm) {
 
-		return "post 参数是 " + getParm +" 时间是  " +System.currentTimeMillis();
+		return "provider post-method 参数是 " + getParm +" 时间是  " +System.currentTimeMillis();
 	}
 }
