@@ -6,4 +6,4 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.10.21:58848
+        server-addr: xinyi.blazings.win:58848
