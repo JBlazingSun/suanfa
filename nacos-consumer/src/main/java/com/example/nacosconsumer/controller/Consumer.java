@@ -1,12 +1,10 @@
 package com.example.nacosconsumer.controller;
 
+import com.example.nacosconsumer.enitiy.TaobaoTime;
 import com.example.nacosconsumer.feign.Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -25,5 +23,11 @@ public class Consumer {
 	public String PostMethod() {
 		String post = provider.Post("我是consumer post");
 		return post;
+	}
+
+	@PostMapping("postObject")
+	public String PostObjectMethod(@RequestBody TaobaoTime time) {
+		String parm = provider.GetObjectParm(time);
+		return parm;
 	}
 }
