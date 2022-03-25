@@ -15,9 +15,6 @@ public class Consumer {
 	@Autowired
 	Provider provider;
 
-	@Value("")
-	NacosConfig nacosConfig;
-
 	@GetMapping("get")
 	public String GetMethod() {
 		String consumerGet = provider.Get();

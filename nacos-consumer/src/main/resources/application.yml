@@ -9,4 +9,4 @@ spring:
         server-addr: xinyi.blazings.win:58848
       config:
         server-addr: xinyi.blazings.win:58848
-        file-extension: nacos-config.yaml
+        file-extension: yaml
