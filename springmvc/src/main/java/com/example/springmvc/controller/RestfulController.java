@@ -2,13 +2,15 @@ package com.example.springmvc.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
-import com.example.springmvc.config.annotation.ICustomerValided;
-import com.example.springmvc.config.exception.RestfulErrorTest;
 import com.example.springmvc.config.annotation.ICustomerGroupGet;
 import com.example.springmvc.config.annotation.ICustomerGroupUpdate;
+import com.example.springmvc.config.annotation.ICustomerValided;
+import com.example.springmvc.config.exception.RestfulErrorTest;
 import com.example.springmvc.entity.MVCUser;
 import com.example.springmvc.entity.ModelValidMultField;
 import com.google.common.collect.Maps;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,10 @@ import java.util.HashMap;
 @RequestMapping("restful")
 @Validated
 @Slf4j
+@Tag(name = "rest")
 public class RestfulController {
 	@GetMapping("hello")
+	@Operation(summary = "hi")
 	public String hello() {
 		// 获取秒数, 10位时间戳
 		Long second = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
