@@ -21,10 +21,10 @@ import java.time.ZoneOffset;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("restful")
+@RequestMapping("restfulCtrl")
 @Validated
 @Slf4j
-@Tag(name = "rest")
+@Tag(name = "restfulCtrl")
 public class RestfulController {
 	@GetMapping("hello")
 	@Operation(summary = "hello Operation")
