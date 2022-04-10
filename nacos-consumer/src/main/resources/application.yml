@@ -1,5 +1,13 @@
 server:
   port: 8081
+springdoc:
+  swagger-ui:
+    path: /docs.html
+    display-request-duration: true
+    groups-order: DESC
+    operationsSorter: method
+    disable-swagger-default-url: true
+    query-config-enabled: true
 spring:
   application:
     name: nacos-consumer
