@@ -5,8 +5,8 @@ spring:
     name: nacos-consumer
   cloud:
     nacos:
-      discovery:
-        server-addr: xinyi.blazings.win:58848
       config:
-        server-addr: xinyi.blazings.win:58848
+        server-addr: 192.168.10.21:58848
         file-extension: yaml
+      discovery:
+        server-addr: 192.168.10.21:58848
