@@ -25,7 +25,7 @@ public class NacosProviderCtrl {
 
 	@PostMapping("postObject")
 	public String GetObjectParm(@RequestBody TaobaoTime time) throws JsonProcessingException {
-		time.setApi("获取到parm, 修改一个1");
+		time.setApi("获取到parm, 在server端已修改");
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(time);
 	}
