@@ -1,5 +1,6 @@
 package com.example.nacosprovider.controller;
 
+import com.example.nacosprovider.NacosProviderApplication;
 import com.example.nacosprovider.entity.TaobaoTime;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,4 +31,10 @@ public class NacosProviderCtrl {
 		return mapper.writeValueAsString(time);
 	}
 
+	@GetMapping("getConfig")
+	public String PublicMethod() {
+		String userName = NacosProviderApplication.run.getEnvironment().getProperty("user.name");
+		String userAge = NacosProviderApplication.run.getEnvironment().getProperty("user.age");
+		return userName+userAge;
+	}
 }
