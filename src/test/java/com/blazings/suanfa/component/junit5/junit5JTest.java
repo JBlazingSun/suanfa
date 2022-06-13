@@ -12,5 +12,11 @@ class junit5JTest {
 	@Test
 	void add() {
 		int add = junit5J.add(1, 2);
+
+	}
+	@Test
+	void add2() {
+		int add = junit5J.add(3, 3);
+
 	}
 }
