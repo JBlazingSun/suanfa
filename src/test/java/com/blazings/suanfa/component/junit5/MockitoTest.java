@@ -18,9 +18,9 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 class MockitoTest {
-	@BeforeEach
-	void setUp() {
-		MockitoAnnotations.openMocks(this);
+	@BeforeAll
+	static void beforeAll() {
+		MockitoAnnotations.openMocks(MockitoTest.class);
 	}
 
 	//6.验证顺序
