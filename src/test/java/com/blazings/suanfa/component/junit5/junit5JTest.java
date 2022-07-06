@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -26,11 +27,20 @@ class junit5JTest {
 	Random random;
 	@Test
 	void PublicMethod() {
-		Mockito.when(random.nextInt()).thenReturn(100);
+		Mockito.when(random.nextInt())
+			.thenReturn(100)
+				.thenReturn(200)
+					.thenReturn(300);
 
 		assertThat(100).isEqualTo(random.nextInt());
+		assertThat(200).isEqualTo(random.nextInt());
+		assertThat(300).isEqualTo(random.nextInt());
 
-		Mockito.verify(random,Mockito.times(1)).nextInt();
+		Mockito.verify(random,Mockito.times(3)).nextInt();
+
+//		InOrder inOrder = Mockito.inOrder(random);
+//		inOrder.verify(random).nextInt();
+
 
 	}
 
