@@ -1,4 +1,4 @@
-package com.example.springmvc.config.exception;
+package com.example.springmvc.exception;
 
 import com.example.springmvc.entity.MVCUser;
 import lombok.Data;

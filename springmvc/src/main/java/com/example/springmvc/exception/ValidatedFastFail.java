@@ -1,4 +1,4 @@
-package com.example.springmvc.config.exception;
+package com.example.springmvc.exception;
 
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;

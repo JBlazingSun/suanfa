@@ -1,7 +1,7 @@
 package com.example.springmvc.config.mvc;
 
 import cn.hutool.core.util.StrUtil;
-import com.example.springmvc.config.exception.RestfulErrorTest;
+import com.example.springmvc.exception.RestfulErrorTest;
 import com.example.springmvc.entity.MVCUser;
 import com.example.springmvc.entity.ResultData;
 import com.example.springmvc.entity.ReturnCode;
