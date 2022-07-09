@@ -37,6 +37,7 @@ class MockitoTest {
 		list1.add("was called first");
 		list2.add("was called second");
 
+
 		InOrder order = inOrder(list1, list2);
 		order.verify(list1).add("was called first");
 		order.verify(list2).add("was called second");

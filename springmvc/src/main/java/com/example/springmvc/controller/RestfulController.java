@@ -5,7 +5,7 @@ import cn.hutool.core.date.LocalDateTimeUtil;
 import com.example.springmvc.config.annotation.ICustomerGroupGet;
 import com.example.springmvc.config.annotation.ICustomerGroupUpdate;
 import com.example.springmvc.config.annotation.ICustomerValided;
-import com.example.springmvc.config.exception.RestfulErrorTest;
+import com.example.springmvc.exception.RestfulErrorTest;
 import com.example.springmvc.entity.MVCUser;
 import com.example.springmvc.entity.ModelValidMultField;
 import com.google.common.collect.Maps;

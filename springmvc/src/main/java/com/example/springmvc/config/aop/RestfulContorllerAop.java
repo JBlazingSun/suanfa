@@ -17,7 +17,7 @@ public class RestfulContorllerAop {
 	 * @return
 	 * @throws Throwable
 	 */
-	@Around("execution(* com.example.springmvc.springmvc.controller.RestfulController..*(..))")
+	@Around("execution(* com.example.springmvc.controller.RestfulController..*(..))")
 	public Object RestfulAop(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		log.info("RestfulContorllerAop before " + proceedingJoinPoint.getSignature().getName());
 
