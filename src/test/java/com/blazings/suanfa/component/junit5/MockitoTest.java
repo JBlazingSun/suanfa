@@ -1,19 +1,20 @@
 package com.blazings.suanfa.component.junit5;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
-
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @Slf4j
@@ -21,6 +22,86 @@ class MockitoTest {
 	@BeforeAll
 	static void beforeAll() {
 		MockitoAnnotations.openMocks(MockitoTest.class);
+	}
+	//11.使用回调存根,  允许使用通用Answer接口存根。
+
+
+	@Test
+	void CallBackAnswer() {
+		when(list.get(0)).thenAnswer(
+			new Answer() {
+				public Object answer(InvocationOnMock invocation){
+					invocation.
+//					log.info("answer");
+					return "answer";
+				}
+			}
+		)
+		/**
+		 *  when(mock.someMethod(anyString())).thenAnswer(
+		 *      new Answer() {
+		 *          public Object answer(InvocationOnMock invocation) {
+		 *              Object[] args = invocation.getArguments();
+		 *              Object mock = invocation.getMock();
+		 *              return "called with arguments: " + Arrays.toString(args);
+		 *          }
+		 *  });
+		 *
+		 *  //Following prints "called with arguments: [foo]"
+		 *  System.out.println(mock.someMethod("foo"));
+		 */
+	}
+
+	//10.存根连续调用（迭代器式存根）
+	@Test
+	void AnyConsecutiveCall() {
+		when(list.get(0))
+			.thenThrow(new RuntimeException())
+			.thenReturn("one","two", "three");
+		try {
+			Object o = list.get(0);
+		} catch (Exception e) {
+			log.info("catch thenThrow(new RuntimeException()");
+		}
+		assertThat(list.get(0)).isEqualTo("one");
+		assertThat(list.get(0)).isEqualTo("two");
+		assertThat(list.get(0)).isEqualTo("three");
+		assertThat(list.get(0)).isEqualTo("three");
+		assertThat(list.get(0)).isEqualTo("three");
+
+		/**
+		 *
+		 when(mock.someMethod("some arg"))
+		 .thenThrow(new RuntimeException())
+		 .thenReturn("foo");
+
+		 //First call: throws runtime exception:
+		 mock.someMethod("some arg");
+
+		 //Second call: prints "foo"
+		 System.out.println(mock.someMethod("some arg"));
+
+		 //Any consecutive call: prints "foo" as well (last stubbing wins).
+		 System.out.println(mock.someMethod("some arg"));
+		 */
+	}
+
+	//8.查找冗余调用
+	@Test
+	void FindNoMoreInteractions() {
+		list.add("one");
+//		list.add("two");
+		verify(list).add("one");
+
+		verifyNoMoreInteractions(list);
+	}
+
+	//7.确保交互从未在模拟中发生
+	@Test
+	void NerverHappen() {
+		list.add("one");
+		verify(list).add("one");
+		verify(list, never()).add("two");
 	}
 
 	//6.验证顺序
@@ -93,6 +174,7 @@ class MockitoTest {
 	//2.一些存根怎么样？
 	@Mock
 	LinkedList linkedList;
+
 	@Test
 	void SomeStub() {
 		when(linkedList.get(0)).thenReturn("first");
@@ -105,7 +187,7 @@ class MockitoTest {
 		}
 		log.info(String.valueOf(linkedList.get(999)));
 
-		verify(linkedList,times(1)).get(0);
+		verify(linkedList, times(1)).get(0);
 	}
 
 	//1.让我们验证一些行为！
@@ -113,6 +195,7 @@ class MockitoTest {
 	//实际上，请不要嘲笑 List 类。请改用真实实例。
 	@Mock
 	List list;
+
 	@Test
 	void VerifySomeAction() {
 		list.add("one");
