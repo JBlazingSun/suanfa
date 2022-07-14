@@ -1,8 +1,9 @@
 package com.blazings.suanfa.component.junit5;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeAll;
 import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
@@ -11,6 +12,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,37 +21,25 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @Slf4j
 class MockitoTest {
-	@BeforeAll
-	static void beforeAll() {
+	@BeforeEach
+	static void BeforeEach() {
 		MockitoAnnotations.openMocks(MockitoTest.class);
 	}
+
+
 	//11.使用回调存根,  允许使用通用Answer接口存根。
-
-
 	@Test
 	void CallBackAnswer() {
-		when(list.get(0)).thenAnswer(
+		when(list.get(618)).thenAnswer(
 			new Answer() {
-				public Object answer(InvocationOnMock invocation){
-					invocation.
-//					log.info("answer");
-					return "answer";
+				public Object answer(InvocationOnMock invocation) {
+					Object[] arguments = invocation.getArguments();
+					Object mock = invocation.getMock();
+					return "called with arguments:" + Arrays.toString(arguments) + " on mock " + mock;
 				}
 			}
-		)
-		/**
-		 *  when(mock.someMethod(anyString())).thenAnswer(
-		 *      new Answer() {
-		 *          public Object answer(InvocationOnMock invocation) {
-		 *              Object[] args = invocation.getArguments();
-		 *              Object mock = invocation.getMock();
-		 *              return "called with arguments: " + Arrays.toString(args);
-		 *          }
-		 *  });
-		 *
-		 *  //Following prints "called with arguments: [foo]"
-		 *  System.out.println(mock.someMethod("foo"));
-		 */
+		);
+		log.info("{}", list.get(618));
 	}
 
 	//10.存根连续调用（迭代器式存根）
