@@ -12,6 +12,7 @@ public class MyEvent extends ApplicationEvent {
         this.msg = msg;
         log.info("MyEvent 构造器执行");
     }
+
     public void print(){
         log.info("hello spring event[MyEvent]");
     }

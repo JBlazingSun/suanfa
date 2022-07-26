@@ -12,11 +12,12 @@ public class MyPublisher implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext= applicationContext;
+        this.applicationContext = applicationContext;
     }
 
-    public void PublisherEvent(String msg){
+    public void publisherEvent(String msg){
         System.out.println("开始发布事件");
         applicationContext.publishEvent(new MyEvent(this,msg));
     }
+
 }

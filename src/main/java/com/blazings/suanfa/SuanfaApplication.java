@@ -11,18 +11,12 @@ import javax.annotation.Resource;
 @Slf4j
 public class SuanfaApplication implements CommandLineRunner {
 
-  //  @Resource
-  //  MyPublisher myPublisher;
-
-//  @Resource RedissonClient client;
-
   public static void main(String[] args) {
     SpringApplication.run(SuanfaApplication.class, args);
   }
 
   @Override
   public void run(String... args) throws Exception {
-//    log.info(client.getConfig().toYAML());
   }
 
 }
