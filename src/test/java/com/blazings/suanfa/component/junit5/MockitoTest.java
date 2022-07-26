@@ -22,10 +22,21 @@ import static org.mockito.Mockito.*;
 @Slf4j
 class MockitoTest {
 	@BeforeEach
-	static void BeforeEach() {
+	void setUp() {
 		MockitoAnnotations.openMocks(MockitoTest.class);
 	}
+	//监视真实物体的重要问题！
 
+	@Test
+	void spyRealObject() {
+		LinkedList<String> list1 = new LinkedList<>();
+		LinkedList<String> spy = spy(list1);
+//		when(spy.get(0)).thenReturn("ffff");
+
+		doReturn("ffff").when(spy).get(0);
+		log.info("{}", spy.get(0));
+
+	}
 
 	//11.使用回调存根,  允许使用通用Answer接口存根。
 	@Test
