@@ -25,7 +25,6 @@ class MockitoTest {
 	void setUp() {
 		MockitoAnnotations.openMocks(MockitoTest.class);
 	}
-	//监视真实物体的重要问题！
 
 	@Test
 	void spyRealObject() {
@@ -36,6 +35,7 @@ class MockitoTest {
 		doReturn("ffff").when(spy).get(0);
 		log.info("{}", spy.get(0));
 
+		assertThat(3).isEqualTo(Mockito.add(1,2));
 	}
 
 	//11.使用回调存根,  允许使用通用Answer接口存根。
