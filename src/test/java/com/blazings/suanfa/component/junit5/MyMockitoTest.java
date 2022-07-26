@@ -5,9 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InOrder;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,10 +18,19 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @Slf4j
-class MockitoTest {
+class MyMockitoTest {
 	@BeforeEach
 	void setUp() {
-		MockitoAnnotations.openMocks(MockitoTest.class);
+		MockitoAnnotations.openMocks(MyMockitoTest.class);
+	}
+	//模拟静态方法（3.4.0 起）
+	@Test
+	void mockStatic() {
+//		assertThat(3).isEqualTo(MyMockito.add(1, 2));
+//		try(MockedStatic mocked = Mockito.mockStatic(MyMockito.class)){
+//			mocked.when(MyMockito::add).thenReturn(5);
+//			assertThat(3).isEqualTo(MyMockito.add(1, 2));
+//		}
 	}
 
 	@Test
@@ -35,7 +42,7 @@ class MockitoTest {
 		doReturn("ffff").when(spy).get(0);
 		log.info("{}", spy.get(0));
 
-		assertThat(3).isEqualTo(Mockito.add(1,2));
+		assertThat(3).isEqualTo(MyMockito.add(1,2));
 	}
 
 	//11.使用回调存根,  允许使用通用Answer接口存根。
