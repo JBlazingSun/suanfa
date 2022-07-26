@@ -1,17 +1,19 @@
 package com.blazings.suanfa.designpattern.observer.SpringObserver;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEvent;
 
+@Slf4j
 public class MyEvent extends ApplicationEvent {
     String msg;
 
     public MyEvent(Object source,String msg) {
         super(source);
         this.msg = msg;
-        System.out.println("MyEvent 构造器执行");
+        log.info("MyEvent 构造器执行");
     }
     public void print(){
-        System.out.println("hello spring event[MyEvent]");
+        log.info("hello spring event[MyEvent]");
     }
     public String DoSomething(){
         return "DoSomething   "+msg;
