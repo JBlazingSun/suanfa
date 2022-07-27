@@ -44,6 +44,10 @@ class junit5JTest {
 	@Test
 	@DisplayName("add111111")
 	void add() {
+		Junit5J junit5J1 = new Junit5J();
+		int add1 = junit5J1.add(1, 2);
+		assertThat(3).isEqualTo(add1);
+
 		int add = junit5J.add(1, 2);
 		assertThat(add).isEqualTo(3);
 
