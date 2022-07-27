@@ -26,12 +26,4 @@ class RestfulControllerTest {
 	@AfterEach
 	void tearDown() {
 	}
-
-	@Test
-	void hello() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/restful/hello")
-			.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3));
-	}
 }
