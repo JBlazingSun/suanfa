@@ -11,15 +11,6 @@
     <groupId>com.blazings</groupId>
     <artifactId>suanfa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <!-- omitted xml -->
-    <distributionManagement>
-        <repository>
-            <!--必须与 settings.xml 的 id 一致-->
-            <id>blazingsss-di-privatej</id>
-            <name>privatej</name>
-            <url>https://blazingsss-maven.pkg.coding.net/repository/di/privatej/</url>
-        </repository>
-    </distributionManagement>
     <name>suanfa</name>
     <description>Demo project for Spring Boot</description>
     <properties>
