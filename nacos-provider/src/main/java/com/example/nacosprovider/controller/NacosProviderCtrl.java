@@ -33,8 +33,8 @@ public class NacosProviderCtrl {
 
 	@GetMapping("getConfig")
 	public String PublicMethod() {
-		String userName = NacosProviderApplication.run.getEnvironment().getProperty("user.name");
-		String userAge = NacosProviderApplication.run.getEnvironment().getProperty("user.age");
+		String userName = NacosProviderApplication.run.getEnvironment().getProperty("name");
+		String userAge = NacosProviderApplication.run.getEnvironment().getProperty("age");
 		return userName+userAge;
 	}
 }
