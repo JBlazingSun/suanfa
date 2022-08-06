@@ -17,4 +17,6 @@ public interface Provider {
 
 	@PostMapping("provider/postObject")
 	public String GetObjectParm(@RequestBody TaobaoTime time);
+	@GetMapping("provider/getConfig")
+	public String GetNacosConfig();
 }

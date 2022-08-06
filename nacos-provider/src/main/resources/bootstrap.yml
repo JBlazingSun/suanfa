@@ -1,5 +1,4 @@
-server:
-  port: 8080
+
 springdoc:
   swagger-ui:
     path: /docs.html
@@ -9,6 +8,8 @@ springdoc:
     disable-swagger-default-url: true
     query-config-enabled: true
 spring:
+  profiles:
+    active: dev
   application:
     name: nacos-provider
   cloud:

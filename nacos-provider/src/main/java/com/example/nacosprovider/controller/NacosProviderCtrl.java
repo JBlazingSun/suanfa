@@ -1,17 +1,24 @@
 package com.example.nacosprovider.controller;
 
 import com.example.nacosprovider.NacosProviderApplication;
+import com.example.nacosprovider.entity.NacosConfig;
 import com.example.nacosprovider.entity.TaobaoTime;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
 @RequestMapping("provider")
+@RefreshScope
 public class NacosProviderCtrl {
-
+	@Value("${config.name}")
+	String name;
+	@Value(("${config.age}"))
+	int age;
 	@GetMapping("get")
 	public String PublicMethodGet() {
 
@@ -32,9 +39,11 @@ public class NacosProviderCtrl {
 	}
 
 	@GetMapping("getConfig")
-	public String PublicMethod() {
-		String userName = NacosProviderApplication.run.getEnvironment().getProperty("name");
-		String userAge = NacosProviderApplication.run.getEnvironment().getProperty("age");
-		return userName+userAge;
+	public NacosConfig GetConfig() {
+		NacosConfig config = new NacosConfig();
+		config.setName(name);
+		config.setAge(age);
+
+		return config;
 	}
 }

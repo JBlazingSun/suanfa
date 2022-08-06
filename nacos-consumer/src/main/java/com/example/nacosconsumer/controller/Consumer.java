@@ -14,18 +14,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("consumer")
 @RequiredArgsConstructor
-//@RefreshScope
+@RefreshScope
 public class Consumer {
 	final Provider provider;
-	@Value("${config.name}")
-	String name;
-	@Value(("${config.age}"))
-	int age;
 
 	@GetMapping("get")
-	public String GetMethod() {
+	public String getMethod() {
 		String consumerGet = provider.Get();
 		return consumerGet;
+	}
+
+	@GetMapping("getNacosConfigFromProvider")
+	public String getNacosConfigFromProvider() {
+		String consumerGet = provider.GetNacosConfig();
+		return consumerGet+"  from nacos-provider";
 	}
 
 	@PostMapping("post")
@@ -40,12 +42,4 @@ public class Consumer {
 		return parm;
 	}
 
-	@GetMapping("getConfig")
-	public NacosConfig GetConfig() {
-		NacosConfig config = new NacosConfig();
-		config.setName(name);
-		config.setAge(age);
-
-		return config;
-	}
 }

@@ -1,5 +1,15 @@
-server:
-  port: 8081
+spring:
+  profiles:
+    active: dev
+  application:
+    name: nacos-consumer
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.10.21:48848
+        file-extension: yaml
+      discovery:
+        server-addr: 192.168.10.21:48848
 springdoc:
   swagger-ui:
     path: /docs.html
@@ -8,14 +18,3 @@ springdoc:
     operationsSorter: method
     disable-swagger-default-url: true
     query-config-enabled: true
-spring:
-  application:
-    name: nacos-consumer
-  cloud:
-    nacos:
-      config:
-        server-addr: 192.168.10.21:48848
-        file-extension: yaml
-        extension-configs:
-      discovery:
-        server-addr: 192.168.10.21:48848
