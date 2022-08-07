@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+
 
 @SpringBootApplication
 @Slf4j
@@ -16,6 +18,10 @@ public class SuanfaApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
+    log.info(String.valueOf(Arrays.stream(args).count()));
+    for (String arg : args) {
+      log.info(arg);
+    }
   }
 
 }
