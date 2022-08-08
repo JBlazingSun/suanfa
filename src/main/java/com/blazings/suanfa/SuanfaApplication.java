@@ -13,11 +13,8 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @Slf4j
-@RequiredArgsConstructor
 public class SuanfaApplication implements CommandLineRunner {
 
-//  @Autowired
-  final HelloRetrofitClient client;
   public static void main(String[] args) {
     SpringApplication.run(SuanfaApplication.class, args);
   }
@@ -28,7 +25,6 @@ public class SuanfaApplication implements CommandLineRunner {
     for (String arg : args) {
       log.info(arg);
     }
-    client.getTime("mtop.common.getTimestamp");
   }
 
 }
