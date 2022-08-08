@@ -22,6 +22,6 @@ class HelloRetrofitClientTest {
 		String time = retrofitClient.getTime("mtop.common.getTimestamp");
 		ObjectMapper objectMapper = new ObjectMapper();
 		TaobaoTime taobaoTime = objectMapper.readValue(time, TaobaoTime.class);
-		assertThat(taobaoTime.getRet()).isEqualTo("[SUCCESS::接口调用成功]");
+		assertThat(taobaoTime.getRet()[0]).isEqualTo("SUCCESS::接口调用成功");
 	}
 }

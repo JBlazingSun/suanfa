@@ -43,5 +43,3 @@ taobao:
 
 #taobao time api
 #http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp
-#http://api.m.taobao.com/rest/api3.do?api=api%3Dmtop.common.getTimestamp
-#http://api.m.taobao.com/rest/getTime?api=api3.do%3Fapi%3Dmtop.common.getTimestamp
