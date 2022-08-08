@@ -3,14 +3,12 @@ package com.blazings.suanfa.component.retrofit;
 import com.blazings.suanfa.entity.TaobaoTime;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.assertj.core.api.Assertions.*;
 
 import javax.annotation.Resource;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class HelloRetrofitClientTest {
