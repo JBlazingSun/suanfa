@@ -42,8 +42,8 @@ retrofit:
 
 taobao:
   baseUrl: http://api.m.taobao.com/rest/
-#  accessKeyId: sdfsdfdsf
-#  accessKeySecret: sadfsadfsdfsdf
+  accessKeyId: accessKeyIdsdfsdfdsf
+  accessKeySecret: accessKeySecretsadfsadfsdfsdf
 
 #taobao time api
 #http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp

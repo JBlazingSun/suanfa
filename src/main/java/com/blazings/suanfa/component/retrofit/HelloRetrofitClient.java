@@ -1,8 +1,7 @@
 package com.blazings.suanfa.component.retrofit;
 
-import com.blazings.suanfa.config.TimeStampInterceptor;
+import com.blazings.suanfa.config.retrofit.Sign;
 import com.github.lianjiatech.retrofit.spring.boot.core.RetrofitClient;
-import com.github.lianjiatech.retrofit.spring.boot.interceptor.Intercept;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -15,7 +14,8 @@ import retrofit2.http.Query;
  */
 @RetrofitClient(baseUrl = "${taobao.baseUrl}")
 //@Intercept(handler = TimeStampInterceptor.class, include = {"/api/**"},exclude = "/api/test/savePerson")
-@Intercept(handler = TimeStampInterceptor.class,exclude = "/rest/**" )
+//@Intercept(handler = TimeStampInterceptor.class,exclude = "/rest/**" )
+@Sign(accessKeyId = "${taobao.accessKeyId}",accessKeySecret = "${taobao.accessKeySecret}",exclude = "/api/test/savePerson")
 public interface HelloRetrofitClient {
 	@GET("api3.do")
 	String getTime(@Query("api") String api);

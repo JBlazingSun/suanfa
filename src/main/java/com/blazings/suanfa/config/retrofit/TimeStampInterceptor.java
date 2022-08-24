@@ -1,4 +1,4 @@
-package com.blazings.suanfa.config;
+package com.blazings.suanfa.config.retrofit;
 
 import com.github.lianjiatech.retrofit.spring.boot.interceptor.BasePathMatchInterceptor;
 import okhttp3.HttpUrl;
