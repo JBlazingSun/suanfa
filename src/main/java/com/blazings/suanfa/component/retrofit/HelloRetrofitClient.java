@@ -1,6 +1,7 @@
 package com.blazings.suanfa.component.retrofit;
 
 import com.blazings.suanfa.config.retrofit.Sign;
+import com.blazings.suanfa.entity.TaobaoTime;
 import com.github.lianjiatech.retrofit.spring.boot.core.RetrofitClient;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -18,5 +19,5 @@ import retrofit2.http.Query;
 @Sign(accessKeyId = "${taobao.accessKeyId}",accessKeySecret = "${taobao.accessKeySecret}",exclude = "/api/test/savePerson")
 public interface HelloRetrofitClient {
 	@GET("api3.do")
-	String getTime(@Query("api") String api);
+	TaobaoTime getTime(@Query("api") String api);
 }

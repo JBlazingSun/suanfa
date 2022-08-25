@@ -1,8 +1,8 @@
 
 retrofit:
   # 全局转换器工厂(已经内置了组件扩展的转换器工厂，这里请勿重复配置)
-#  global-converter-factories:
-#    - retrofit2.converter.jackson.JacksonConverterFactory
+  global-converter-factories:
+    - retrofit2.converter.jackson.JacksonConverterFactory
   # 全局调用适配器工厂(已经内置了组件扩展的调用适配器工厂，这里请勿重复配置)
 #  global-call-adapter-factories:
   # 全局日志打印配置
@@ -41,9 +41,17 @@ retrofit:
 #      grade: 0
 
 taobao:
-  baseUrl: http://api.m.taobao.com/rest/
+  baseUrl: https://api.m.taobao.com/rest/
   accessKeyId: accessKeyIdsdfsdfdsf
   accessKeySecret: accessKeySecretsadfsadfsdfsdf
+tuna:
+  baseUrl: https://img1.baidu.com/it/
+  fileKey:
+
+
 
 #taobao time api
 #http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp
+
+#
+# https://img1.baidu.com/it/u=4276151928,2257626089&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=313
