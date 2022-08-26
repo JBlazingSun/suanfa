@@ -45,7 +45,7 @@ taobao:
   accessKeyId: accessKeyIdsdfsdfdsf
   accessKeySecret: accessKeySecretsadfsadfsdfsdf
 tuna:
-  baseUrl: https://img1.baidu.com/
+  baseUrl: https://img1.baidu.com/it/
   fileKey:
 
 

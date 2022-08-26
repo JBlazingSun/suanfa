@@ -22,14 +22,9 @@ class DownloadRetrofitClientTest {
 	@Test
 	void download() throws IOException {
 		HashMap<@Nullable String, @Nullable String> hashMap = Maps.newHashMap();
-//		hashMap.put("u", "4276151928,2257626089");
-//		hashMap.put("fm", "253");
-//		hashMap.put("fmt", "auto");
-//		hashMap.put("app", "138");
-//		hashMap.put("f", "JPEG");
 		hashMap.put("w", "500");
 		hashMap.put("h", "313");
-		Response<ResponseBody> response = downloadRetrofitClient.download(hashMap);
+		Response<ResponseBody> response = downloadRetrofitClient.download("u=4276151928,2257626089&fm=253&fmt=auto&app=138&f=JPEG",hashMap);
 		ResponseBody responseBody = response.body();
 		// 二进制流
 		InputStream is = responseBody.byteStream();
