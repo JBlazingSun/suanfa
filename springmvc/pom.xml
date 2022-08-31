@@ -84,6 +84,12 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <!-- https://mavenlibs.com/maven/plugin/com.google.cloud.tools/jib-maven-plugin -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.1</version>
+            </plugin>
         </plugins>
     </build>
 
