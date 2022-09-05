@@ -6,3 +6,11 @@ springdoc:
     operationsSorter: method
     disable-swagger-default-url: true
     query-config-enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true
