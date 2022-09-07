@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>springmvc</artifactId>
+    <artifactId>suanfa_mvcapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springmvc</name>
-    <description>springmvc</description>
+    <name>suanfa_mvcapp</name>
+    <description>suanfa_mvcapp</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -107,8 +107,44 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.2.1</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:11.0.16-jre</image>
+                    </from>
+                    <to>
+                        <image>registry.cn-hangzhou.aliyuncs.com/blazings/${project.name}</image>
+<!--                        <credHelper>osxkeychain</credHelper>-->
+                        <tags>
+                            <tag>latest</tag>
+                        </tags>
+                    </to>
+                    <container>
+                        <environment>
+                            <TZ>Asia/Shanghai</TZ>
+                        </environment>
+<!--                        <jvmFlags>-->
+<!--                            <jvmFlag>-Dmy.property=example.value</jvmFlag>-->
+<!--                            <jvmFlag>-Xms512m</jvmFlag>-->
+<!--                            <jvmFlag>-Xdebug</jvmFlag>-->
+<!--                        </jvmFlags>-->
+<!--                        <mainClass>mypackage.MyApp</mainClass>-->
+<!--                        <args>-->
+<!--                            <arg>some</arg>-->
+<!--                            <arg>args</arg>-->
+<!--                        </args>-->
+                        <ports>
+                            <port>50080</port>
+<!--                            <port>2000-2003/udp</port>-->
+                        </ports>
+<!--                        <labels>-->
+<!--                            <key1>value1</key1>-->
+<!--                            <key2>value2</key2>-->
+<!--                        </labels>-->
+<!--                        <format>OCI</format>-->
+                    </container>
+                </configuration>
+
             </plugin>
         </plugins>
     </build>
-
 </project>

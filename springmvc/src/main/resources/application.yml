@@ -1,7 +1,8 @@
 spring:
   application:
     name: suanfa_mvcapp
-
+server:
+  port: 50080
 
 springdoc:
   swagger-ui:
