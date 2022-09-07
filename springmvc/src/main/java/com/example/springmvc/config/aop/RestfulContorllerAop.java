@@ -6,8 +6,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.context.annotation.Configuration;
 
-@Aspect
-@Configuration
+//@Aspect
+//@Configuration
 @Slf4j
 public class RestfulContorllerAop {
 	/**
@@ -30,4 +30,9 @@ public class RestfulContorllerAop {
 		log.info("RestfulContorllerAop after " + proceedingJoinPoint.getSignature().getName());
 		return proceed;
 	}
+	public String getString() {
+
+		return "";
+	}
+
 }

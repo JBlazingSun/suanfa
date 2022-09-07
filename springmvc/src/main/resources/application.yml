@@ -1,3 +1,8 @@
+spring:
+  application:
+    name: suanfa_mvcapp
+
+
 springdoc:
   swagger-ui:
     path: /docs.html
@@ -6,6 +11,7 @@ springdoc:
     operationsSorter: method
     disable-swagger-default-url: true
     query-config-enabled: true
+#打开所有端点
 management:
   endpoints:
     web:
@@ -14,6 +20,12 @@ management:
   endpoint:
     shutdown:
       enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 # Sa-Token-Quick-Login 配置
 sa:
   # 登录账号
@@ -27,8 +39,9 @@ sa:
   # 登录页标题
   title: 登录
   # 是否显示底部版权信息
-  copr: false
+  copr: true
   # 指定拦截路径
-  include: '/actuator'
+  include: /actuator
   # 指定排除路径
   # exclude: /sss,/fff
+

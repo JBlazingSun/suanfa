@@ -30,7 +30,7 @@ class DownloadRetrofitClientTest {
 		InputStream is = responseBody.byteStream();
 
 		// 具体如何处理二进制流，由业务自行控制。这里以写入文件为例
-		File tempDirectory = new File("E:\\download");
+		File tempDirectory = new File("C:\\blazings\\download");
 		if (!tempDirectory.exists()) {
 			tempDirectory.mkdir();
 		}
