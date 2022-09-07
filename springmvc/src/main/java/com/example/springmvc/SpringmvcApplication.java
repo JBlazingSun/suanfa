@@ -13,7 +13,7 @@ public class SpringmvcApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringmvcApplication.class, args);
 		SaQuickConfig config = SaQuickManager.getConfig();
-		log.info(String.valueOf(""));
+		log.info(String.valueOf(config));
 	}
 
 }
