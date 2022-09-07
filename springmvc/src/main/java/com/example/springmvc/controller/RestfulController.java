@@ -38,11 +38,10 @@ public class RestfulController {
 
 	@GetMapping("hello12")
 	public HashMap<String,  Object> hello12() {
-		LocalDateTime time = LocalDateTimeUtil.of(System.currentTimeMillis());
 		HashMap< String, Object> map = Maps.newHashMap();
 		map.put("hello", "这里 是Say Hi");
 		map.put("DateUtil.now", DateUtil.now());
-		map.put("LocalDateTime time", time);
+		map.put("timestamp", System.currentTimeMillis());
 		return map;
 	}
 
