@@ -2,6 +2,8 @@ package com.blazings.suanfa.widget.clearphoto;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileTypeUtil;
+import cn.hutool.core.io.FileUtil;
 import com.blazings.suanfa.widget.clearphoto.google_photo_format.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Slf4j
 class ImageTest {
@@ -87,6 +87,14 @@ class ImageTest {
 		DateTime chinaDate = DateUtil.date(Long.parseLong(chinaTime));
 		log.info(chinaDate.toString());
 		log.info(String.valueOf(chinaDate.year()));
+		//月数是从0开始
 		log.info(String.valueOf(chinaDate.month()+1));
+	}
+
+	@Test
+	void printFiles() {
+		Image image = new Image();
+		image.eachFiles(new File("E:\\download\\Takeout"));
+		log.info(String.valueOf(image.filesNum)+"    文件夹:  "+String.valueOf(image.dirNum));
 	}
 }

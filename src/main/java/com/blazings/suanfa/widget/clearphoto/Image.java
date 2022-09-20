@@ -1,5 +1,6 @@
 package com.blazings.suanfa.widget.clearphoto;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileReader;
 import com.blazings.suanfa.widget.clearphoto.google_photo_format.Response;
 import com.drew.imaging.jpeg.JpegMetadataReader;
@@ -17,6 +18,39 @@ import java.util.Iterator;
 
 @Slf4j
 public class Image {
+
+	//用了hutool
+	//文件数量
+	int filesNum = 0;
+	//文件夹数量
+	int dirNum = 0;
+
+	//遍历文件夹下所有文件
+	public void eachFiles(File dir) {
+		if (dir.isDirectory()) {
+			//File的listFiles()方法返回File对象的数组，其中包含了当前目录下的子文件和子文件夹结构
+			//创建一个File类型的数组 next[]来接收返回值
+			File next[] = dir.listFiles();
+			//使用for循环来遍历当前的数组
+			for (int i = 0; i < next.length; i++) {
+				//无论当前的文件是文件还是文件夹，都输出其名称 getName()
+				//				System.out.println(next[i].getName());
+				if (FileUtil.isFile(next[i])) {
+					filesNum++;
+				}
+				if (FileUtil.isDirectory(next[i])) {
+					dirNum++;
+				}
+				//如果是文件夹，需要再列出其下一级的所有的元素（内部的结构）
+				if (next[i].isDirectory()) {
+					//循环调用，且下一级文件结构要多缩进一个即 tab+1
+					eachFiles(next[i]);
+				}
+			}
+		}
+	}
+
+
 	public Response getPhotoObject(String fileJson) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Response response = objectMapper.readValue(fileJson, Response.class);
@@ -29,8 +63,7 @@ public class Image {
 		String result = fileReader.readString();
 		return result;
 	}
-	
-	
+
 	/**
 	 * 处理 单张 图片
 	 *
