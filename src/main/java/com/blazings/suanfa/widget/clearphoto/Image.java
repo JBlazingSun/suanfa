@@ -25,6 +25,8 @@ public class Image {
 	//文件夹数量
 	int dirNum = 0;
 
+
+
 	//遍历文件夹下所有文件
 	public void eachFiles(File dir) {
 		if (dir.isDirectory()) {
@@ -49,8 +51,7 @@ public class Image {
 			}
 		}
 	}
-
-
+	//解析json文件
 	public Response getPhotoObject(String fileJson) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Response response = objectMapper.readValue(fileJson, Response.class);
@@ -58,6 +59,7 @@ public class Image {
 	}
 
 
+	//读json文件
 	public String getGooglePhotoFormat(String filepath) {
 		FileReader fileReader = new FileReader(filepath);
 		String result = fileReader.readString();
