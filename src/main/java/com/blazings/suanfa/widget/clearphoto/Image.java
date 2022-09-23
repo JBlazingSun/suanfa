@@ -26,7 +26,6 @@ public class Image {
 	int dirNum = 0;
 
 
-
 	//遍历文件夹下所有文件
 	public void eachFiles(File dir) {
 		if (dir.isDirectory()) {
