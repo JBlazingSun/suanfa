@@ -95,6 +95,6 @@ class ImageTest {
 	void printFiles() {
 		Image image = new Image();
 		image.eachFiles(new File("E:\\download\\Takeout"));
-		log.info(String.valueOf(image.filesNum)+"    文件夹:  "+String.valueOf(image.dirNum));
+		log.info(image.filesNum +"    文件夹:  "+ image.dirNum);
 	}
 }
