@@ -54,12 +54,12 @@ class ImageTest {
 	@Test
 	void getImageTime() {
 		Image image = new Image();
-		File file = new File("E:\\download\\Takeout\\Google 相册\\11月二外高中罗邦友聚餐\\IMG_20171115_193830.jpg");
+		File file = new File("E:\\download\\其他\\IMG_20200619_152338.jpg");
 		image.getImageTime(file);
 	}
 
 	@Test
-	void getPhotoObject() throws JsonProcessingException {
+	void getPhotoObject() {
 		Image image = new Image();
 		Image mock = mock(Image.class);
 		when(mock.getGooglePhotoFormat("")).thenReturn("{\n" +
@@ -131,7 +131,7 @@ class ImageTest {
 	}
 
 	@Test
-	void copyFiles() throws JsonProcessingException {
+	void copyFiles() {
 		Image image = new Image();
 		image.eachFiles(new File("E:\\download\\Takeout"));
 		log.info(image.filesNum +"    文件夹:  "+ image.dirNum);

@@ -103,7 +103,7 @@ public class Image {
 	}
 
 	/**
-	 * 处理 单张 图片
+	 * 三方库处理 单张 图片
 	 *
 	 * @return void
 	 * @date 2015-7-25 下午7:30:47
@@ -118,7 +118,7 @@ public class Image {
 				Iterator<Tag> tags = exif.getTags().iterator();
 				while (tags.hasNext()) {
 					Tag tag = (Tag) tags.next();
-					log.info(tag.toString());
+					System.out.println(tag.toString());
 				}
 			}
 		} catch (JpegProcessingException e) {
