@@ -6,14 +6,11 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileReader;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.blazings.suanfa.widget.clearphoto.google_photo_format.Response;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.assertj.core.api.Assertions.*;
 
 import java.io.File;
 
