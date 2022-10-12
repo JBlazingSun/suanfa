@@ -126,7 +126,7 @@ class ImageTest {
 		//判断sort文件夹里对应年份月份文件夹对应的 文件名是否存在, 存在就跳过
 		if (!FileUtil.exist(image.target + "\\" + year + "-" + month + "\\" + fileName)) {
 			//复制到对应年份月份文件夹
-			FileUtil.copy("\u202AE:\\download\\Takeout\\Google 相册\\Photos from 2017\\IMG_20171115_231934.jpg", image.target + "\\" + year + "-" + month + "\\" + fileName, true);
+			FileUtil.copy("E:\\download\\Takeout\\Google 相册\\Photos from 2017\\IMG_20171115_231934.jpg", image.target + "\\" + year + "-" + month + "\\" + fileName, true);
 		}
 	}
 
