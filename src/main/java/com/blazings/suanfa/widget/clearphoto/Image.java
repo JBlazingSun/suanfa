@@ -32,7 +32,7 @@ public class Image {
 	String target = "E:\\download\\sort";
 
 	//流程
-	void flow(File file) throws JsonProcessingException {
+	void flow(File file) {
 		if (!FileNameUtil.extName(file).equals("json")) {
 			filesNum++;
 			//获取源文件绝对路径
@@ -64,7 +64,7 @@ public class Image {
 	}
 
 	//遍历文件夹下所有文件
-	public void eachFiles(File dir) throws JsonProcessingException {
+	public void eachFiles(File dir) {
 		if (dir.isDirectory()) {
 			//File的listFiles()方法返回File对象的数组，其中包含了当前目录下的子文件和子文件夹结构
 			//创建一个File类型的数组 next[]来接收返回值
@@ -88,7 +88,7 @@ public class Image {
 		}
 	}
 	//解析json文件timestamp
-	public String getPhotoTimeStamp(String fileJson) throws JsonProcessingException {
+	public String getPhotoTimeStamp(String fileJson) {
 		JSONObject jsonObject = JSONUtil.parseObj(fileJson);
 		String creationTime = jsonObject.getStr("photoTakenTime");
 		return JSONUtil.parseObj(creationTime).getStr("timestamp");
