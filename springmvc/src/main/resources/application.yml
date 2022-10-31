@@ -1,8 +1,12 @@
 spring:
+  messages:
+    encoding: UTF-8
   application:
     name: suanfa_mvcapp
 server:
   port: 50080
+  tomcat:
+    uri-encoding: UTF-8
 
 springdoc:
   swagger-ui:
@@ -23,6 +27,8 @@ management:
       enabled: true
     prometheus:
       enabled: true
+    health:
+      show-details: ALWAYS
   metrics:
     export:
       prometheus:
