@@ -52,12 +52,6 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.12</version>
         </dependency>
-        <!-- https://mavenlibs.com/maven/dependency/cn.dev33/sa-token-quick-login -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-quick-login</artifactId>
-            <version>1.32.0</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus -->
         <dependency>
             <groupId>io.micrometer</groupId>

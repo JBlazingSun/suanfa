@@ -1,7 +1,5 @@
 package com.example.springmvc;
 
-import cn.dev33.satoken.quick.SaQuickManager;
-import cn.dev33.satoken.quick.config.SaQuickConfig;
 import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +14,6 @@ public class SpringmvcApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringmvcApplication.class, args);
-		SaQuickConfig config = SaQuickManager.getConfig();
-		log.info(String.valueOf(config));
 	}
 
 	@Bean
