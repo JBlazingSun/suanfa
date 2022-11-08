@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.example.springmvc.config.annotation.ICustomerGroupGet;
 import com.example.springmvc.config.annotation.ICustomerGroupUpdate;
 import com.example.springmvc.config.annotation.ICustomerValided;
+import com.example.springmvc.config.annotation.IgnoreResponseAdvice;
 import com.example.springmvc.entity.MVCUser;
 import com.example.springmvc.entity.ModelValidMultField;
 import com.example.springmvc.exception.RestfulErrorTest;
@@ -36,6 +37,7 @@ public class RestfulController {
 	}
 
 	@GetMapping("hello12")
+	@IgnoreResponseAdvice
 	public HashMap<String,  Object> hello12() {
 		HashMap< String, Object> map = Maps.newHashMap();
 		map.put("hello", "这里 是Say Hi");
