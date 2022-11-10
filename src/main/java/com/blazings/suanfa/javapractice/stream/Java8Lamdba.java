@@ -49,9 +49,7 @@ public class Java8Lamdba {
 //    System.out.println("过滤之后:" + result);
 
     List<String> collect = list.stream()
-            .filter(s -> {
-              return !s.equals("李四");
-            })
+        .filter(s -> !s.equals("李四"))
             .collect(Collectors.toList());
 
     collect.add(("xuwujing"));
