@@ -17,17 +17,19 @@ class AuthorTest {
 	//所有年龄小于18的作家的名字，并且要注意去重
 	@Test
 	void name() {
-		authorList.stream()
+		authorList.parallelStream()
 			.filter(author -> author.age < 18)
 			.distinct()
 			.collect(Collectors.toList())
 			.forEach(author -> System.out.println(author.getName()));
 	}
 
+	//打印所有姓名长度大于1的作家的姓名
 	@Test
 	void name1() {
-		authorList.set(0, new Author(333L, "蒙多", 33, "一个从菜刀中明悟哲理的祖安人", null));
-		System.out.println(authorList);
+		authorList.stream()
+			.filter(author -> author.name.length() > 1)
+			.forEach(System.out::println);
 	}
 
 	@BeforeEach
