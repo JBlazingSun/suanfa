@@ -5,34 +5,31 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @SpringBootTest
 class AuthorTest {
 
 	List<Author> authorList;
 
+	//输出所有作家的名字
+	@Test
+	void name6() {
+		OptionalInt max = authorList.stream()
+			.flatMap(author -> author.getBooks().stream())
+			.mapToInt(book -> book.getScore())
+			.max();
+		System.out.println(max.getAsInt());
+	}
+
 	//打印现有数据的所有分类。要求对分类进行去重。不能出现这种格式:哲学，爱情
-
-	/**
-	 * .flatMap(book -> Stream.of(book.getCategory()))
-	 * .flatMap(s -> Arrays.stream(StrUtil.splitToArray(s, ',')))
-	 * .distinct()
-	 * .forEach(s -> System.out.println(s));
-	 */
-
 	@Test
 	void name5() {
 		authorList.stream()
 			.flatMap(author -> author.getBooks().stream())
-			.flatMap(book -> Stream.of(book.getCategory()))
-			.flatMap(s -> Arrays.stream(StrUtil.splitToArray(s, ',')))
+			.flatMap(book -> StrUtil.split(book.getCategory(), ',').stream())
 			.distinct()
 			.forEach(category -> System.out.println(category));
 
