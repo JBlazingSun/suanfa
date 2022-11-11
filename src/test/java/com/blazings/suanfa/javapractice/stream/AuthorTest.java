@@ -1,18 +1,65 @@
 package com.blazings.suanfa.javapractice.stream;
 
+import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @SpringBootTest
 class AuthorTest {
 
 	List<Author> authorList;
+
+	//打印现有数据的所有分类。要求对分类进行去重。不能出现这种格式:哲学，爱情
+
+	/**
+	 * .flatMap(book -> Stream.of(book.getCategory()))
+	 * .flatMap(s -> Arrays.stream(StrUtil.splitToArray(s, ',')))
+	 * .distinct()
+	 * .forEach(s -> System.out.println(s));
+	 */
+
+	@Test
+	void name5() {
+		authorList.stream()
+			.flatMap(author -> author.getBooks().stream())
+			.flatMap(book -> Stream.of(book.getCategory()))
+			.flatMap(s -> Arrays.stream(StrUtil.splitToArray(s, ',')))
+			.distinct()
+			.forEach(category -> System.out.println(category));
+
+	}
+
+	@Test
+	void name4() {
+		authorList.stream()
+			.flatMap(author -> author.getBooks().stream())
+			.distinct()
+			.forEach(book -> System.out.println(book));
+
+		IntSummaryStatistics max = authorList.stream()
+			.flatMapToInt(author -> IntStream.of(author.getAge()))
+			.summaryStatistics();
+		System.out.println(max);
+	}
+
+	//	对流中的元素按照年龄进行降序排序，并且要求不能有重复的元素,然后打印其中年龄最大的两个作家的姓名。
+	@Test
+	void name3() {
+		authorList.stream()
+			.distinct()
+			.sorted()
+			.limit(2)
+			.forEach(author -> System.out.println(author));
+	}
 
 	//所有年龄小于18的作家的名字，并且要注意去重
 	@Test
@@ -28,8 +75,11 @@ class AuthorTest {
 	@Test
 	void name1() {
 		authorList.stream()
-			.filter(author -> author.name.length() > 1)
-			.forEach(System.out::println);
+			.map(author -> {
+				author.setAge(author.getAge() + 10);
+				return author;
+			})
+			.forEach(author -> System.out.println(author));
 	}
 
 	@BeforeEach
@@ -48,7 +98,7 @@ class AuthorTest {
 
 		books2.add(new Book(3L, " 那风吹不到的地方", "哲学", 85, "带你用思维去领略世界的尽头"));
 		books2.add(new Book(3L, "那风吹不到的地方", "哲学", 85, "带你用思维去领略世界的尽头"));
-		books2.add(new Book(4L, "吹或不吹", "爱情，个人传记", 56, " :一个哲学家的恋爱观注定很难把他所在的时代理解"));
+		books2.add(new Book(4L, "吹或不吹", "爱情,个人传记", 56, " :一个哲学家的恋爱观注定很难把他所在的时代理解"));
 
 		books3.add(new Book(5L, "你的剑就是我的剑", "爱情", 56, "无法想象- 个武者能对他的伴侣这么的宽容"));
 		books3.add(new Book(6L, "风与剑", "个人传记", 100, "两个哲学家灵魂和肉体的碰撞会激起怎么样的火花呢? "));
