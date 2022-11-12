@@ -1,6 +1,7 @@
 package com.blazings.suanfa.javapractice.stream;
 
 import cn.hutool.core.util.StrUtil;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,48 @@ class AuthorTest {
 
 	List<Author> authorList;
 
-	//输出所有作家的名字
+	//获取任意一个大于18的作家,如果存在就输出他的名字
+	@Test
+	void name11() {
+		Optional<Author> author1 = authorList.stream()
+			.filter(author -> author.getAge() > 18)
+			.findAny();
+		author1.ifPresent(author -> System.out.println(author.name));
+	}
+
+	//判断是否所有的作家都是成年人
+	@Test
+	void name10() {
+		Assertions.assertTrue(authorList.stream()
+			.allMatch(author -> author.getAge() > 18));
+	}
+
+	//判断是否有年龄在29以上的作家
+	@Test
+	void name9() {
+		Assertions.assertTrue(authorList.stream()
+			.anyMatch(author -> author.getAge() > 29));
+	}
+
+	//获取一个map集合, map的key为作者名, value为List<Book>
+	@Test
+	void name8() {
+		Map<String, List<Book>> collect = authorList.stream()
+			.distinct()
+			.collect(Collectors.toMap(Author::getName, Author::getBooks));
+		System.out.println(collect);
+	}
+
+	//获取一个所有书名的Set集合。
+	@Test
+	void name7() {
+		authorList.stream()
+			.flatMap(author -> author.getBooks().stream())
+			.map(book -> book.getName())
+			.collect(Collectors.toSet())
+			.forEach(s -> System.out.println(s));
+	}
+
 	@Test
 	void name6() {
 		OptionalInt max = authorList.stream()
@@ -93,7 +135,7 @@ class AuthorTest {
 		books1.add(new Book(1L, "刀的两侧是光明与黑暗", "哲学,爱情", 88, "用一把刀划分了爱恨"));
 		books1.add(new Book(2L, "一个人不能死在同一把刀下", "个人成长,爱情", 99, "讲述如何从失败中明悟真理"));
 
-		books2.add(new Book(3L, " 那风吹不到的地方", "哲学", 85, "带你用思维去领略世界的尽头"));
+		books2.add(new Book(3L, "那风吹不到的地方", "哲学", 85, "带你用思维去领略世界的尽头"));
 		books2.add(new Book(3L, "那风吹不到的地方", "哲学", 85, "带你用思维去领略世界的尽头"));
 		books2.add(new Book(4L, "吹或不吹", "爱情,个人传记", 56, " :一个哲学家的恋爱观注定很难把他所在的时代理解"));
 
