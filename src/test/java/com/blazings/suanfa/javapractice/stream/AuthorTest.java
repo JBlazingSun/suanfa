@@ -1,7 +1,9 @@
 package com.blazings.suanfa.javapractice.stream;
 
 import cn.hutool.core.util.StrUtil;
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Table;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,11 @@ class AuthorTest {
 	@Test
 	void name16() {
 		print(value -> value < 3, value2 -> value2 < 7);
+		Table<String, String, List<Object>> tables = HashBasedTable.create();
+		tables.put("财务部", "总监", Lists.newArrayList());
+		tables.put("财务部", "职员", Lists.newArrayList());
+		tables.put("法务部", "助理", Lists.newArrayList());
+		System.out.println(tables);
 	}
 
 	void print(IntPredicate predicate, IntPredicate predicate2) {
