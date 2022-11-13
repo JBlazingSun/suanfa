@@ -1,12 +1,14 @@
 package com.blazings.suanfa.javapractice.stream;
 
 import cn.hutool.core.util.StrUtil;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
+import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,6 +16,60 @@ import java.util.stream.IntStream;
 class AuthorTest {
 
 	List<Author> authorList;
+
+	@Test
+	void name16() {
+		print(value -> value < 3, value2 -> value2 < 7);
+	}
+
+	void print(IntPredicate predicate, IntPredicate predicate2) {
+		ArrayList<Integer> integers = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+		integers.forEach(integer -> {
+			if (predicate.or(predicate2).and(predicate2).test(integer)) {
+				System.out.println("integer = " + integer);
+			}
+		});
+	}
+
+	@Test
+	void name15() {
+		Optional<List<Author>> authorList1 = Optional.ofNullable(authorList);
+		authorList1.ifPresent(authors -> authors.stream().flatMap(author -> author.getBooks().stream()).forEach(book -> {
+			Optional<Book> optionalBook = Optional.ofNullable(book);
+			if (optionalBook.isPresent()) {
+				System.out.println("optionalBook.get().getName() = " + optionalBook.get().getName());
+			}
+			;
+		}));
+	}
+
+	@Test
+	void name14() {
+		authorList.stream()
+			.map(author -> {
+				author.setAge(author.getAge() + 100);
+				return author.getAge();
+			})
+			.forEach(integer -> System.out.println("integer = " + integer));
+	}
+
+	@Test
+	void name13() {
+		int reduce = authorList.stream()
+			.distinct()
+			.mapToInt(value -> value.getAge())
+			.reduce(0, (left, right) -> left + right);
+		System.out.println("reduce = " + reduce);
+
+	}
+
+	@Test
+	void name12() {
+		List<Integer> integers = Arrays.asList(1, 2, 3);
+		Optional<Integer> reduce = Optional.of(integers.stream()
+			.reduce(100, (integer, integer2) -> integer + integer2));
+		reduce.ifPresent(integer -> System.out.println(integer));
+	}
 
 	//获取任意一个大于18的作家,如果存在就输出他的名字
 	@Test
@@ -142,6 +198,7 @@ class AuthorTest {
 		books3.add(new Book(5L, "你的剑就是我的剑", "爱情", 56, "无法想象- 个武者能对他的伴侣这么的宽容"));
 		books3.add(new Book(6L, "风与剑", "个人传记", 100, "两个哲学家灵魂和肉体的碰撞会激起怎么样的火花呢? "));
 		books3.add(new Book(6L, "风与剑", "个人传记", 100, "两个哲学家灵魂和肉体的碰撞会激起怎么样的火花呢? "));
+		books3.add(null);
 
 		author.setBooks(books1);
 		author2.setBooks(books2);
