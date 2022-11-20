@@ -36,6 +36,29 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!-- https://mavenlibs.com/maven/dependency/com.ejlchina/bean-searcher-boot-starter -->
+        <dependency>
+            <groupId>com.ejlchina</groupId>
+            <artifactId>bean-searcher-boot-starter</artifactId>
+            <version>3.8.2</version>
+        </dependency>
+        <!-- https://mavenlibs.com/maven/dependency/com.alibaba/druid-spring-boot-starter -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.15</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- https://mavenlibs.com/maven/dependency/com.baomidou/mybatis-plus-boot-starter -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+
 
         <dependency>
             <groupId>cn.hutool</groupId>
