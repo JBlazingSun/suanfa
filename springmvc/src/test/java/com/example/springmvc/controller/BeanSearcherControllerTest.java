@@ -21,11 +21,14 @@ class BeanSearcherControllerTest {
 	@Test
 		//插入测试数据
 	void index() {
-		for (int i = 31; i < 100; i++) {
+		for (int i = 1; i < 50; i++) {
 			User user = new User();
+//			user.setId(0L);
 			user.setName(String.valueOf(i));
 			user.setAge(i);
-//			userMapper.insert(user);
+			user.setPoint(i);
+
+			userMapper.insert(user);
 		}
 	}
 }
