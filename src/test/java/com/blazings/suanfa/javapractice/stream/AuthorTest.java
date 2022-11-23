@@ -20,6 +20,11 @@ class AuthorTest {
 	List<Author> authorList;
 
 	@Test
+	void name17() {
+
+	}
+
+	@Test
 	void name16() {
 		print(value -> value < 3, value2 -> value2 < 7);
 		Table<String, String, List<Object>> tables = HashBasedTable.create();
