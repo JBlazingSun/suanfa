@@ -1,9 +1,11 @@
 package com.example.springmvc.controller;
 
-import com.ejlchina.searcher.MapSearcher;
+import com.ejlchina.searcher.BeanSearcher;
 import com.ejlchina.searcher.SearchResult;
 import com.ejlchina.searcher.util.MapUtils;
+import com.example.springmvc.entity.ResultData;
 import com.example.springmvc.entity.User;
+import com.example.springmvc.entity.beansearcher.Q1;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("user")
@@ -20,11 +22,17 @@ import java.util.Map;
 @Tag(name = "user_beanSearcher")
 public class BeanSearcherController {
 	@Resource
-	private MapSearcher mapSearcher;
+	private BeanSearcher searcher;
 
 	@GetMapping("index")
-	public SearchResult<Map<String, Object>> index(HttpServletRequest request) {
+	public SearchResult<User> index(HttpServletRequest request) {
 		// 一行代码，实现一个用户检索接口（MapUtils.flat 只是收集前端的请求参数）, 默认分页15个
-		return mapSearcher.search(User.class, MapUtils.flat(request.getParameterMap()));
+		return searcher.search(User.class, MapUtils.flat(request.getParameterMap()));
+	}
+
+	@GetMapping("getQ1")
+	public ResultData GetQ1() {
+		List<Q1> q1s = searcher.searchList(Q1.class, null);
+		return ResultData.success(q1s);
 	}
 }
