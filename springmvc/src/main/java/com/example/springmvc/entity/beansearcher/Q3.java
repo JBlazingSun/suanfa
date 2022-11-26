@@ -16,11 +16,5 @@ public class Q3 {
 	@DbField(value = "s.s_name")
 	String stuName;
 	@DbField(value = "AVG(score.s_score)", alias = "avgScore")
-	Double avgScore;
-
-
-	public Double getAvgScore() {
-		BigDecimal decimal = new BigDecimal(avgScore);
-		return decimal.doubleValue();
-	}
+	BigDecimal avgScore;
 }

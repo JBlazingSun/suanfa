@@ -12,13 +12,13 @@ import java.io.Serializable;
  */
 public class student implements Serializable {
 	private static final long serialVersionUID = -27149613179899569L;
-	@DbField(alias = "学生ID")
+	@DbField(value = "s.s_id", alias = "学生ID")
 	private String sId;
-	@DbField(alias = "学生名字")
+	@DbField(value = "s.s_name", alias = "学生名字")
 	private String sName;
-	@DbField(alias = "学生生日")
+	@DbField(value = "s.s_brith", alias = "学生生日")
 	private String sBrith;
-	@DbField(alias = "学生性别")
+	@DbField(value = "s.s_sex", alias = "学生性别")
 	private String sSex;
 
 
