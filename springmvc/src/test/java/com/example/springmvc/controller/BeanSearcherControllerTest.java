@@ -20,10 +20,28 @@ class BeanSearcherControllerTest {
 
 	@Resource
 	BeanSearcher searcher;
+
+	//Q12
+	//-- 12、查询至少有一门课与学号为"01"的同学所学相同的同学的信息
+	@Test
+	void name12() {
+//		Map<String, Object> sideq01 = MapUtils.builder()
+//			.field(score::getSId, "01")
+//			.build();
+//		List<String> cid = searcher.searchList(score.class, sideq01).stream()
+//			.map(score::getCId)
+//			.collect(Collectors.toList());
+//
+//		Map<String, Object> sidincid = MapUtils.builder()
+//			.field(score::getSId, cid).sql("in $2")
+//			.build();
+//		List<score> scores = searcher.searchList(score.class, sidincid);
+		List<Q12> q12s = searcher.searchList(Q12.class, null);
+
+	}
+
 	//q11
 	//-- 11、查询没有学全所有课程的同学的信息
-
-
 	@Test
 	void name11() {
 		Number courseNumber = searcher.searchCount(course.class, null);
