@@ -1,6 +1,7 @@
 package com.example.springmvc.entity.beansearcher.entity;
 
 import com.ejlchina.searcher.bean.DbField;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2022-11-24 22:49:15
  */
+@Data
 public class student implements Serializable {
 	private static final long serialVersionUID = -27149613179899569L;
 	@DbField(value = "s.s_id", alias = "学生ID")

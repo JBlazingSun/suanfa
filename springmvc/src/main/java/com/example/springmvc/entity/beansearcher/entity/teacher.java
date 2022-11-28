@@ -1,5 +1,7 @@
 package com.example.springmvc.entity.beansearcher.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2022-11-24 22:49:15
  */
+@Data
 public class teacher implements Serializable {
 	private static final long serialVersionUID = 839392675420057770L;
 

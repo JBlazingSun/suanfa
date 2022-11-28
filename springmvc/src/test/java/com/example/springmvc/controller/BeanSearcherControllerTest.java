@@ -6,12 +6,17 @@ import com.ejlchina.searcher.util.MapUtils;
 import com.example.springmvc.entity.User;
 import com.example.springmvc.entity.beansearcher.*;
 import com.example.springmvc.entity.beansearcher.entity.course;
+import com.example.springmvc.entity.beansearcher.entity.score;
+import com.example.springmvc.entity.beansearcher.entity.student;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 //https://www.cnblogs.com/Diyo/p/11424844.html
@@ -21,22 +26,88 @@ class BeanSearcherControllerTest {
 	@Resource
 	BeanSearcher searcher;
 
+	//Q13
+	//-- 13、查询和"01"号的同学学习的课程完全相同的其他同学的信息
+	@Test
+	void name13() {
+		Map<String, Object> cid01 = MapUtils.builder()
+			.onlySelect(score::getCId)
+			.field(score::getSId, "01")
+			.build();
+		Set<String> cid01Set = searcher.searchList(score.class, cid01).stream()
+			.map(score::getCId)
+			.collect(Collectors.toSet());
+
+		List<Q13> q13sWithOut01 = searcher.searchList(Q13.class, null);
+
+		List<HashMap<@Nullable Object, @Nullable Object>> collect = q13sWithOut01.stream()
+			.map(q13 -> {
+				HashMap<@Nullable Object, @Nullable Object> map = Maps.newHashMap();
+				HashSet<@Nullable Object> set = Sets.newHashSet();
+				q13sWithOut01.stream().forEach(q131 -> {
+					if (q131.getSId().equals(q13.getSId()))
+						set.add(q131.getCid());
+				});
+				map.put(q13.getSId(), set);
+				return map;
+			})
+			.collect(Collectors.toList());
+
+		List<@Nullable Object> sameStuList = collect.stream()
+			.flatMap(objectObjectHashMap -> objectObjectHashMap.entrySet().stream())
+			.filter(objectObjectEntry -> {
+				Sets.SetView<String> setView = Sets.difference(cid01Set, (Set<?>) objectObjectEntry.getValue());
+				if (setView.size() == 0)
+					return true;
+				return false;
+			})
+			.map(sameStu -> {
+				HashSet<@Nullable Object> setStu = Sets.newHashSet();
+				q13sWithOut01.forEach(q13 -> {
+					if (q13.getSId().equals(sameStu.getKey())) {
+						student stu = new student();
+						BeanUtils.copyProperties(q13, stu);
+						setStu.add(stu);
+					}
+				});
+				return setStu;
+			})
+			.distinct()
+			.flatMap(objects -> objects.stream())
+			.collect(Collectors.toList());
+
+		System.out.println("sameStuList = " + sameStuList);
+	}
+
 	//Q12
 	//-- 12、查询至少有一门课与学号为"01"的同学所学相同的同学的信息
 	@Test
 	void name12() {
-//		Map<String, Object> sideq01 = MapUtils.builder()
-//			.field(score::getSId, "01")
-//			.build();
-//		List<String> cid = searcher.searchList(score.class, sideq01).stream()
-//			.map(score::getCId)
-//			.collect(Collectors.toList());
-//
-//		Map<String, Object> sidincid = MapUtils.builder()
-//			.field(score::getSId, cid).sql("in $2")
-//			.build();
-//		List<score> scores = searcher.searchList(score.class, sidincid);
-		List<Q12> q12s = searcher.searchList(Q12.class, null);
+//		List<Q12> q12s = searcher.searchList(Q12.class, null);
+
+		Set<Integer> sets = Sets.newHashSet(1, 2, 3, 4, 5, 6);
+		Set<Integer> sets2 = Sets.newHashSet(1, 2, 3, 4);
+
+
+		// 交集
+		System.out.println("交集为：");
+		Sets.SetView<Integer> intersection = Sets.intersection(sets, sets2);
+		for (Integer temp : intersection) {
+			System.out.println(temp);
+		}
+		// 差集
+		System.out.println("差集为：");
+		Sets.SetView<Integer> diff = Sets.difference(sets, sets2);
+		System.out.println("diff.size() = " + diff.size());
+		for (Integer temp : diff) {
+			System.out.println(temp);
+		}
+		// 并集
+		System.out.println("并集为：");
+		Sets.SetView<Integer> union = Sets.union(sets, sets2);
+		for (Integer temp : union) {
+			System.out.println(temp);
+		}
 
 	}
 
