@@ -1,5 +1,7 @@
 package com.example.springmvc.controller;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.util.NumberUtil;
 import com.ejlchina.searcher.BeanSearcher;
 import com.ejlchina.searcher.util.MapUtils;
@@ -11,6 +13,8 @@ import com.example.springmvc.entity.beansearcher.entity.student;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,8 +27,31 @@ import java.util.stream.Collectors;
 @SpringBootTest
 class BeanSearcherControllerTest {
 
+	TimeInterval timer;
+
+	@BeforeEach
+	void setUp() {
+		timer = DateUtil.timer();
+	}
+
+	@AfterEach
+	void tearDown() {
+		System.out.println("花费毫秒数 = " + timer.interval());
+	}
+
 	@Resource
 	BeanSearcher searcher;
+
+	//-- 14、查询没学过"张三"老师讲授的任一门课程的学生姓名
+	@Test
+	void name14() {
+		Map<String, Object> build = MapUtils.builder()
+			.onlySelect(student::getSName)
+			.build();
+		List<String> q14s = searcher.searchList(Q14.class, build).stream()
+			.map(student::getSName)
+			.collect(Collectors.toList());
+	}
 
 	//Q13
 	//-- 13、查询和"01"号的同学学习的课程完全相同的其他同学的信息
@@ -57,9 +84,7 @@ class BeanSearcherControllerTest {
 			.flatMap(objectObjectHashMap -> objectObjectHashMap.entrySet().stream())
 			.filter(objectObjectEntry -> {
 				Sets.SetView<String> setView = Sets.difference(cid01Set, (Set<?>) objectObjectEntry.getValue());
-				if (setView.size() == 0)
-					return true;
-				return false;
+				return setView.size() == 0;
 			})
 			.map(sameStu -> {
 				HashSet<@Nullable Object> setStu = Sets.newHashSet();
