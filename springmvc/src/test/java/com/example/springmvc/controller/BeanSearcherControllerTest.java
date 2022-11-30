@@ -42,6 +42,39 @@ class BeanSearcherControllerTest {
 	@Resource
 	BeanSearcher searcher;
 
+	//17、按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+	@Test
+	void name17() {
+		//查询学生id和平均成绩
+		List<Q17Avg> q17Avgs = searcher.searchList(Q17Avg.class, null);
+		//所有课程
+		List<course> courses = searcher.searchList(course.class, null);
+		courses.forEach(course -> {
+			Map<String, Object> build = MapUtils.builder()
+				.field(score::getCId, course.getCId())
+				.build();
+			searcher.searchList(score.class, build).forEach(score -> {
+				q17Avgs.forEach(q17Avg -> {
+					if (q17Avg.getSid().equals(score.getSId())) {
+						q17Avg.getCid_score().put(course.getCName(), score.getSScore());
+					}
+				});
+			});
+		});
+	}
+
+	//-- 16、检索"01"课程分数小于60，按分数降序排列的学生信息
+	@Test
+	void name16() {
+		List<Q16> q16s = searcher.searchList(Q16.class, null);
+	}
+
+	//-- 15、查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩
+	@Test
+	void name15() {
+		List<Q15> q15s = searcher.searchList(Q15.class, null);
+	}
+
 	//-- 14、查询没学过"张三"老师讲授的任一门课程的学生姓名
 	@Test
 	void name14() {
