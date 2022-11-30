@@ -48,8 +48,7 @@ class BeanSearcherControllerTest {
 		//查询学生id和平均成绩
 		List<Q17Avg> q17Avgs = searcher.searchList(Q17Avg.class, null);
 		//所有课程
-		List<course> courses = searcher.searchList(course.class, null);
-		courses.forEach(course -> {
+		searcher.searchList(course.class, null).forEach(course -> {
 			Map<String, Object> build = MapUtils.builder()
 				.field(score::getCId, course.getCId())
 				.build();
