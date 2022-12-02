@@ -42,20 +42,51 @@ class BeanSearcherControllerTest {
 	@Resource
 	BeanSearcher searcher;
 
+	//18.查询各科成绩最高分、最低分和平均分：以如下形式显示：课程ID，课程name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
+	//get每个科目->课程ID，课程name，最高分，最低分，平均分
+	@Test
+	void name18() {
+		List<Q18Score> q18Scores = searcher.searchList(Q18Score.class, null);
+		HashSet<@Nullable Object> allScore = Sets.newHashSet();
+		Map<String, List<Q18Score>> course = q18Scores.stream()
+			.distinct()
+			.collect(Collectors.groupingBy(q18Score -> q18Score.getCName()));
+
+		course.keySet().forEach(s -> {
+			course.entrySet().stream()
+				.flatMap(stringListEntry -> stringListEntry.getValue().stream())
+				.map(q18Score -> {
+					if (s.equals(q18Score.getCName())) {
+						Q18 q18 = new Q18();
+						BeanUtils.copyProperties(q18Score, q18);
+						DoubleSummaryStatistics statistics = course.entrySet().stream().flatMap(stringListEntry -> stringListEntry.getValue().stream())
+							.filter(q18Score1 -> q18Score1.getCName().equals(q18Score.getCName()))
+							.mapToDouble(Q18Score::getS_score)
+							.summaryStatistics();
+						q18.setTopScore(statistics.getMax());
+						q18.setMinScore(statistics.getMin());
+						allScore.add(q18);
+					}
+					return null;
+				})
+				.collect(Collectors.toList());
+		});
+	}
+
 	//17、按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
 	@Test
 	void name17() {
 		//查询学生id和平均成绩
-		List<Q17Avg> q17Avgs = searcher.searchList(Q17Avg.class, null);
+		List<Q17> q17s = searcher.searchList(Q17.class, null);
 		//所有课程
 		searcher.searchList(course.class, null).forEach(course -> {
 			Map<String, Object> build = MapUtils.builder()
 				.field(score::getCId, course.getCId())
 				.build();
 			searcher.searchList(score.class, build).forEach(score -> {
-				q17Avgs.forEach(q17Avg -> {
-					if (q17Avg.getSid().equals(score.getSId())) {
-						q17Avg.getCid_score().put(course.getCName(), score.getSScore());
+				q17s.forEach(q17 -> {
+					if (q17.getSid().equals(score.getSId())) {
+						q17.getCid_score().put(course.getCName(), score.getSScore());
 					}
 				});
 			});
