@@ -42,6 +42,39 @@ class BeanSearcherControllerTest {
 	@Resource
 	BeanSearcher searcher;
 
+	//-- 26、查询每门课程被选修的学生数
+	@Test
+	void name26() {
+		List<Q26> q26s = searcher.searchList(Q26.class, null);
+	}
+
+	//-- 22、查询所有课程的成绩第2名到第3名的学生信息及该课程成绩
+	@Test
+	void name22() {
+		Map<String, Object> build = MapUtils.builder()
+			.limit(1, 2)
+			.build();
+		List<String> top2_3 = searcher.searchList(Q22Top2_3.class, build).stream()
+			.map(Q22Top2_3::getS_id)
+			.collect(Collectors.toList());
+		Map<String, Object> build1 = MapUtils.builder()
+			.put("top2_3", top2_3.toString().replace("[", "").replace("]", ""))
+			.build();
+		List<Q22> q22s = searcher.searchList(Q22.class, build1);
+	}
+
+	////-- 21、查询不同老师所教不同课程平均分从高到低显示
+	@Test
+	void name21() {
+		List<Q21> q21s = searcher.searchList(Q21.class, null);
+	}
+
+	//-- 20、查询学生的总成绩并进行排名
+	@Test
+	void name20() {
+		List<Q20> q20s = searcher.searchList(Q20.class, null);
+	}
+
 	//18.查询各科成绩最高分、最低分和平均分：以如下形式显示：课程ID，课程name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
 	//get每个科目->课程ID，课程name，最高分，最低分，平均分
 	@Test
