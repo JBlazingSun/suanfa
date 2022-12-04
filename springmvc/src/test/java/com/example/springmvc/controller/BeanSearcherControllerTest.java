@@ -1,5 +1,7 @@
 package com.example.springmvc.controller;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.util.NumberUtil;
@@ -26,7 +28,6 @@ import java.util.stream.Collectors;
 //https://www.cnblogs.com/Diyo/p/11424844.html
 @SpringBootTest
 class BeanSearcherControllerTest {
-
 	TimeInterval timer;
 
 	@BeforeEach
@@ -41,6 +42,33 @@ class BeanSearcherControllerTest {
 
 	@Resource
 	BeanSearcher searcher;
+
+	//-- 46、查询各学生的年龄 -- 按照出生日期来算，当前月日 < 出生年月的月日则，年龄减一
+	@Test
+	void name46() {
+		List<Q46> students = searcher.searchAll(Q46.class, null);
+		List<student> yearList = students.stream()
+			.map(student -> {
+				com.example.springmvc.entity.beansearcher.entity.student student2 = new student();
+				BeanUtils.copyProperties(student, student2);
+				DateTime parse = DateUtil.parse(student.getSBrith());
+				Date date = DateUtil.date();
+				long year = DateUtil.between(date, parse, DateUnit.DAY) / 365;
+				student2.setSBrith(String.valueOf(year));
+				return student2;
+			})
+			.collect(Collectors.toList());
+
+		//-- 47、查询本月过生日的学生
+		List<Q46> thisMonthBirthDays = students.stream()
+			.filter(q46 -> {
+				DateTime parse = DateUtil.parse(q46.getSBrith());
+				if (parse.month() == DateUtil.date().month())
+					return true;
+				return false;
+			})
+			.collect(Collectors.toList());
+	}
 
 	//-- 35、查询所有学生的课程及分数情况；
 	@Test
@@ -71,6 +99,7 @@ class BeanSearcherControllerTest {
 			})
 			.sorted((o1, o2) -> (int) (o2.getSumScore() - o1.getSumScore()))
 			.collect(Collectors.toList());
+		System.out.println("collect = " + collect);
 	}
 
 	//-- 26、查询每门课程被选修的学生数
