@@ -42,6 +42,37 @@ class BeanSearcherControllerTest {
 	@Resource
 	BeanSearcher searcher;
 
+	//-- 35、查询所有学生的课程及分数情况；
+	@Test
+	void name35() {
+		List<Q35AllScore> q35AllScores = searcher.searchAll(Q35AllScore.class, null);
+		Set<Q35> lackSum = q35AllScores.stream()
+			.map(q35AllScore -> {
+				Q35 q35 = new Q35();
+				BeanUtils.copyProperties(q35AllScore, q35);
+				q35AllScores.forEach(q35AllScore1 -> {
+					if (q35AllScore.getS_id().equals(q35AllScore1.getS_id()) && q35AllScore.getC_id() != null) {
+						q35.getScoreMap().put(q35AllScore1.getC_name(), q35AllScore1.getS_score());
+					}
+				});
+				return q35;
+			})
+			.collect(Collectors.toSet());
+
+		List<Q35> collect = lackSum.stream()
+			.map(q35 -> {
+				double sum = lackSum.stream()
+					.filter(q351 -> q351.getS_id().equals(q35.getS_id()))
+					.flatMap(q352 -> q352.getScoreMap().values().stream())
+					.mapToDouble(value -> value)
+					.sum();
+				q35.setSumScore(sum);
+				return q35;
+			})
+			.sorted((o1, o2) -> (int) (o2.getSumScore() - o1.getSumScore()))
+			.collect(Collectors.toList());
+	}
+
 	//-- 26、查询每门课程被选修的学生数
 	@Test
 	void name26() {
