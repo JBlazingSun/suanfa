@@ -108,7 +108,7 @@ class BeanSearcherControllerTest {
 		List<Q26> q26s = searcher.searchList(Q26.class, null);
 	}
 
-	//-- 22、查询所有课程的成绩第2名到第3名的学生信息及该课程成绩
+	//-- 22、查询所有课程的成绩第2名到第3名的学生信息及该课程成绩  .replace("[", "").replace("]", "")
 	@Test
 	void name22() {
 		Map<String, Object> build = MapUtils.builder()
@@ -118,7 +118,7 @@ class BeanSearcherControllerTest {
 			.map(Q22Top2_3::getS_id)
 			.collect(Collectors.toList());
 		Map<String, Object> build1 = MapUtils.builder()
-			.put("top2_3", top2_3.toString().replace("[", "").replace("]", ""))
+			.put("top2_3", top2_3.toString())
 			.build();
 		List<Q22> q22s = searcher.searchList(Q22.class, build1);
 	}
