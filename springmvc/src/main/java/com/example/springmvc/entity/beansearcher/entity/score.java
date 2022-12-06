@@ -1,5 +1,6 @@
 package com.example.springmvc.entity.beansearcher.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class score implements Serializable {
 	private static final long serialVersionUID = -48416428486730758L;
 
+	@TableId("s_id")
 	private String sId;
 
 	private String cId;
