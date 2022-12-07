@@ -5,7 +5,7 @@ import com.ejlchina.searcher.util.MapUtils;
 import com.example.springmvc.entity.beansearcher.entity.score;
 import com.example.springmvc.mapper.ScoreMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -23,30 +23,37 @@ class TransactionJTest {
 	@Resource
 	TransactionJ transactionJ;
 
-	@AfterEach
-	void tearDown() {
+	@BeforeEach
+	void setUp() {
 		score score11 = new score();
 		score11.setSId("11");
 		score11.setCId("11");
 		score11.setSScore(100);
 		score score22 = new score();
-		score11.setSId("22");
-		score11.setCId("22");
-		score11.setSScore(100);
+		score22.setSId("22");
+		score22.setCId("22");
+		score22.setSScore(100);
+		score score33 = new score();
+		score33.setSId("33");
+		score33.setCId("33");
+		score33.setSScore(100);
 		System.out.println("scoreMapper.updateById(score11) = " + scoreMapper.updateById(score11));
 		System.out.println("scoreMapper.updateById(score22) = " + scoreMapper.updateById(score22));
-
+		System.out.println("scoreMapper.updateById(score33) = " + scoreMapper.updateById(score33));
 	}
 
 	@Test
-	void updateScore() {
+	void name() {
 		Map<String, Object> build = MapUtils.builder()
 			.selectExclude(score::getCId)
-			.field(score::getSId).sql("$1='11' or $1='22'")
+			.field(score::getSId).sql("$1='11' or $1='22' or $1='33'")
 			.build();
 		List<score> scores = searcher.searchAll(score.class, build);
 		log.info(scores.toString());
 
-		log.info(String.valueOf(transactionJ.updateScore()));
+		transactionJ.updateScore();
+
+		List<score> scores1 = searcher.searchAll(score.class, build);
+		log.info(scores1.toString());
 	}
 }
