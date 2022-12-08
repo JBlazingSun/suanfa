@@ -20,5 +20,4 @@ public class SpringmvcApplication {
 	MeterRegistryCustomizer<MeterRegistry> getConfig(@Value("${spring.application.name}") String appName) {
 		return (registry -> registry.config().commonTags("application",appName));
 	}
-
 }
