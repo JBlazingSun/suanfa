@@ -33,11 +33,10 @@ public class TransactionJ {
 			} else if (score.getSId().equals("22")) {
 				score.setSScore(score.getSScore() + 10);
 				scoreMapper.updateById(score);
-				System.out.println(1 / 0);
+//				System.out.println(1 / 0);
 			} else {
 				score.setSScore(score.getSScore() + 10);
 				scoreMapper.updateById(score);
-
 			}
 		});
 	}
