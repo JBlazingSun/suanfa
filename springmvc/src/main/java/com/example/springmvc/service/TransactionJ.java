@@ -3,9 +3,14 @@ package com.example.springmvc.service;
 import com.ejlchina.searcher.BeanSearcher;
 import com.ejlchina.searcher.util.MapUtils;
 import com.example.springmvc.entity.beansearcher.entity.score;
+import com.example.springmvc.entity.transaction.User1;
+import com.example.springmvc.entity.transaction.User2;
 import com.example.springmvc.mapper.ScoreMapper;
+import com.example.springmvc.mapper.User1Mapper;
+import com.example.springmvc.mapper.User2Mapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -20,7 +25,27 @@ public class TransactionJ {
 	ScoreMapper scoreMapper;
 	@Resource
 	BeanSearcher searcher;
+	@Resource
+	User1Mapper user1Mapper;
+	@Resource
+	User2Mapper user2Mapper;
+	//https://segmentfault.com/a/1190000013341344
 
+	//PROPAGATION_REQUIRED
+	@Transactional
+	public void addUser1(User1 user1) {
+		user1Mapper.insert(user1);
+	}
+	@Transactional
+	public void addUser2(User2 user2) {
+		user2Mapper.insert(user2);
+	}
+	@Transactional
+	public void addRequiredException(User2 user2) {
+		user2Mapper.insert(user2);
+		throw new RuntimeException();
+	}
+	//自测
 	public void updateScore() {
 		Map<String, Object> build = MapUtils.builder()
 			.field(score::getSId).sql("$1='11' or $1='22' or $1='33'")
