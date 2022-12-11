@@ -1,5 +1,6 @@
 package com.example.springmvc.entity.transaction;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 public class User1 implements Serializable {
     private static final long serialVersionUID = -54073992995217064L;
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
     
     private String name;
