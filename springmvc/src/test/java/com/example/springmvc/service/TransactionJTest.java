@@ -1,5 +1,12 @@
 package com.example.springmvc.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.ejlchina.searcher.BeanSearcher;
 import com.ejlchina.searcher.util.MapUtils;
 import com.example.springmvc.entity.beansearcher.entity.score;
@@ -8,10 +15,17 @@ import com.example.springmvc.entity.transaction.User2;
 import com.example.springmvc.mapper.ScoreMapper;
 import com.example.springmvc.mapper.User1Mapper;
 import com.example.springmvc.mapper.User2Mapper;
+
+import java.util.ArrayList;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +33,13 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Slf4j
 class TransactionJTest {
+	@MockBean
+	private BeanSearcher beanSearcher;
+
 	@Resource
 	ScoreMapper scoreMapper;
 	@Resource
@@ -48,19 +66,20 @@ class TransactionJTest {
 	@Transactional
 	void transaction_exception_required_requiresNew_requiresNew() {
 
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addUser2RequiresNew(user2);
 
-		User2 user3=new User2();
+		User2 user3 = new User2();
 		user3.setName("王五");
 		transactionJ.addUser2RequiresNew(user3);
 		throw new RuntimeException();
 	}
+
 	/**
 	 * 验证方法2：
 	 * “张三”未插入，“李四”插入，“王五”未插入。
@@ -69,21 +88,22 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void transaction_required_requiresNew_requiresNew_exception() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addUser2RequiresNew(user2);
 
-		User2 user3=new User2();
+		User2 user3 = new User2();
 		user3.setName("王五");
 		transactionJ.addUser2RequiresNewException(user3);
 	}
+
 	/**
 	 * 验证方法3
-	 *“张三”插入，“李四”插入，“王五”未插入。
+	 * “张三”插入，“李四”插入，“王五”未插入。
 	 * 外围方法开启事务，插入“张三”方法和外围方法一个事务，插入“李四”方法、插入“王五”方法分别在独立的新建事务中。插入“王五”方法抛出异常，首先插入“王五”方法的事务被回滚，异常被catch不会被外围方法感知，外围方法事务不回滚，故插入“张三”方法插入成功。
 	 */
 	@Test
@@ -110,7 +130,7 @@ class TransactionJTest {
 	 * 2.1 场景一
 	 * 外围方法没有开启事务。
 	 * 结论：通过这两个方法我们证明了在外围方法未开启事务的情况下Propagation.REQUIRES_NEW修饰的内部方法会新开启自己的事务，且开启的事务相互独立，互不干扰。
-	 *
+	 * <p>
 	 * 验证方法1：
 	 * “张三”插入，“李四”插入。
 	 * 外围方法没有事务，插入“张三”、“李四”方法都在自己的事务中独立运行,外围方法抛出异常回滚不会影响内部方法。
@@ -118,15 +138,16 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void notransaction_exception_requiresNew_requiresNew() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRES_NEW(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addUser2RequiresNew(user2);
 		throw new RuntimeException();
 	}
+
 	/**
 	 * 验证方法2：
 	 * “张三”插入，“李四”未插入
@@ -135,11 +156,11 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void notransaction_requiresNew_requiresNew_exception() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRES_NEW(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addUser2RequiresNewException(user2);
 	}
@@ -159,11 +180,11 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void transaction_required_required_exception_try() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三transaction_required_required_exception_try");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四transaction_required_required_exception_try");
 		try {
 			transactionJ.addRequiredException(user2);
@@ -180,11 +201,11 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void transaction_required_required_exception() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addRequiredException(user2);
 	}
@@ -197,11 +218,11 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void transaction_exception_required_required() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三 transaction_exception_required_required");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四 transaction_exception_required_required");
 		transactionJ.addUser2REQUIRED(user2);
 		throw new RuntimeException();
@@ -218,14 +239,15 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void notransaction_required_required_exception() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addRequiredException(user2);
 	}
+
 	/**
 	 * 验证方法1：
 	 * “张三”、“李四”均插入。
@@ -234,17 +256,17 @@ class TransactionJTest {
 	@Test
 	@Transactional
 	void notransaction_exception_required_required() {
-		User1 user1=new User1();
+		User1 user1 = new User1();
 		user1.setName("张三");
 		transactionJ.addUser1REQUIRED(user1);
 
-		User2 user2=new User2();
+		User2 user2 = new User2();
 		user2.setName("李四");
 		transactionJ.addUser2REQUIRED(user2);
 		throw new RuntimeException();
 	}
 
-//	@BeforeEach
+	//	@BeforeEach
 	void setUp() {
 		score score11 = new score();
 		score11.setSId("11");
