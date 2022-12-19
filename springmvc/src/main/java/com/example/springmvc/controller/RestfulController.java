@@ -40,7 +40,7 @@ public class RestfulController {
 	@IgnoreResponseAdvice
 	public HashMap<String,  Object> hello12() {
 		HashMap< String, Object> map = Maps.newHashMap();
-		map.put("hello", "这里 是Say Hi");
+		map.put("hello", "这里 是Say Hi Hi");
 		map.put("DateUtil.now", DateUtil.now());
 		map.put("timestamp", System.currentTimeMillis());
 		return map;
