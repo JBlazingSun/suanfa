@@ -51,6 +51,17 @@ class TransactionJTest {
 	@Resource
 	User2Mapper user2Mapper;
 
+	@Test
+	void name0() {
+		int a=1;
+		int b=2;
+		int c= (a+b>3?a++:b++);
+
+		System.out.println("c = " + c);
+		System.out.println("a = " + a);
+		System.out.println("b = " + b);
+	}
+
 	/**
 	 * REQUIRES_NEW
 	 * 结论：在外围方法开启事务的情况下Propagation.REQUIRES_NEW修饰的内部方法依然会单独开启独立事务，且与外部方法事务也独立，内部方法之间、内部方法和外部方法事务均相互独立，互不干扰。
