@@ -2,9 +2,8 @@ package com.example.springmvc.config.annotation;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.example.springmvc.entity.ModelValidMultField;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class MultiFieldConstraint implements ConstraintValidator<MultiField,Object> {
 	ModelValidMultField modelValidMultField;

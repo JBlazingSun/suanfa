@@ -1,6 +1,6 @@
 package com.example.springmvc.config.annotation;
 
-import javax.validation.groups.Default;
+import jakarta.validation.groups.Default;
 
 public interface ICustomerGroupUpdate extends Default {
 }

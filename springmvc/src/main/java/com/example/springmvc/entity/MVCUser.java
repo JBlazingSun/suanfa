@@ -1,14 +1,14 @@
 package com.example.springmvc.entity;
 
-import com.example.springmvc.config.annotation.ICustomerValided;
 import com.example.springmvc.config.annotation.ICustomerGroupGet;
 import com.example.springmvc.config.annotation.ICustomerGroupUpdate;
+import com.example.springmvc.config.annotation.ICustomerValided;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 

@@ -1,12 +1,5 @@
 package com.example.springmvc.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.ejlchina.searcher.BeanSearcher;
 import com.ejlchina.searcher.util.MapUtils;
 import com.example.springmvc.entity.beansearcher.entity.score;
@@ -15,21 +8,15 @@ import com.example.springmvc.entity.transaction.User2;
 import com.example.springmvc.mapper.ScoreMapper;
 import com.example.springmvc.mapper.User1Mapper;
 import com.example.springmvc.mapper.User2Mapper;
-
-import java.util.ArrayList;
-
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 

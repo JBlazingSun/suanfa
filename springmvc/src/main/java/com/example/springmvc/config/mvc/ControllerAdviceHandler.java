@@ -1,11 +1,13 @@
 package com.example.springmvc.config.mvc;
 
 import cn.hutool.core.util.StrUtil;
-import com.example.springmvc.exception.RestfulErrorTest;
 import com.example.springmvc.entity.MVCUser;
 import com.example.springmvc.entity.ResultData;
 import com.example.springmvc.entity.ReturnCode;
+import com.example.springmvc.exception.RestfulErrorTest;
 import com.google.common.collect.Lists;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,8 +22,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;

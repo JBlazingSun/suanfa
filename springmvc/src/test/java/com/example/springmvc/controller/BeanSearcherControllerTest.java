@@ -14,6 +14,7 @@ import com.example.springmvc.entity.beansearcher.entity.score;
 import com.example.springmvc.entity.beansearcher.entity.student;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import jakarta.annotation.Resource;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 

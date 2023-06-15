@@ -1,11 +1,9 @@
 package com.example.springmvc.config.mvc;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 //@Configuration
 @Slf4j
 public class InterceptorAdvice implements HandlerInterceptor {

@@ -1,7 +1,7 @@
 package com.example.springmvc.config.annotation;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * 实现ConstraintValidator就是Spring的bean了, 不需要再加@Configuration

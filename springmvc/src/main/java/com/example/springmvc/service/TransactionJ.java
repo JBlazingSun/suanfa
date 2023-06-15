@@ -8,13 +8,12 @@ import com.example.springmvc.entity.transaction.User2;
 import com.example.springmvc.mapper.ScoreMapper;
 import com.example.springmvc.mapper.User1Mapper;
 import com.example.springmvc.mapper.User2Mapper;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.Temperature;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
