@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.10</version>
+        <version>3.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
@@ -46,13 +46,13 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.16</version>
+            <version>1.2.18</version>
         </dependency>
         <!-- https://mavenlibs.com/maven/dependency/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.32</version>
+            <version>8.0.33</version>
         </dependency>
         <!-- https://mavenlibs.com/maven/dependency/com.baomidou/mybatis-plus-boot-starter -->
         <dependency>
@@ -68,21 +68,23 @@
         </dependency>
 
 
+        <!-- https://mavenlibs.com/maven/dependency/cn.hutool/hutool-all -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.11</version>
+            <version>5.8.19</version>
         </dependency>
         <!-- https://mavenlibs.com/maven/dependency/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>31.1-jre</version>
+            <version>32.0.1-jre</version>
         </dependency>
+        <!-- https://mavenlibs.com/maven/dependency/org.springdoc/springdoc-openapi-ui -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.14</version>
+            <version>1.7.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus -->
         <dependency>
@@ -93,7 +95,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.19.0</version>
+            <version>3.22.0</version>
         </dependency>
 
 
@@ -138,7 +140,7 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.3.2</version>
                 <configuration>
                     <from>
                         <image>openjdk:11.0.16-jre</image>
