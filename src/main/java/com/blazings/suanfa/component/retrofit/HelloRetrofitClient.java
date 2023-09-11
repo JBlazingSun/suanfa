@@ -1,6 +1,6 @@
 package com.blazings.suanfa.component.retrofit;
 
-import com.blazings.suanfa.config.retrofit.Sign;
+import com.blazings.suanfa.component.retrofit.config.retrofit.Sign;
 import com.blazings.suanfa.entity.TaobaoTime;
 import com.github.lianjiatech.retrofit.spring.boot.core.RetrofitClient;
 import retrofit2.http.GET;
