@@ -1,0 +1,46 @@
+
+<configuration scan="false" scanPeriod="120 seconds">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!-- 定义日志文件名称 -->
+    <property name="APP_NAME" value="suanfa" />
+    <!-- 定义日志文件的路径 -->
+    <property name="LOG_PATH" value="C:/blazings/logbackLogs/" />
+    <!-- 定义日志的文件名 -->
+    <property name="LOG_FILE" value="${LOG_PATH}/${APP_NAME}.log" />
+
+    <!-- 滚动记录日志，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
+    <appender name="APPLICATION"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 指定日志文件的名称 -->
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <!-- 日志输出格式： -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>
+        </layout>
+    </appender>
+    <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!--
+       日志输出格式：
+           %d表示日期时间，%green 绿色
+           %thread表示线程名，%magenta 洋红色
+           %-5level：级别从左显示5个字符宽度 %highlight 高亮色
+           %logger{36} 表示logger名字最长36个字符，否则按照句点分割 %yellow 黄色
+           %msg：日志消息
+           %n是换行符
+       -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%magenta(%thread)] %highlight(%-5level) %yellow(%logger{36}): %msg%n</pattern>
+        </layout>
+    </appender>
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="APPLICATION" />
+    </root>
+</configuration>

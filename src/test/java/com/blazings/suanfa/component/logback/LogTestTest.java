@@ -14,14 +14,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 class LogTestTest {
 
   /**
-  * Method under test: {@link LogTest#PublicMethod()}
+  * Method under test: {@link LogTest#publicMethod()}
   */
   @Test
   void testPublicMethod() {
     // TODO: Complete this test.
     //   Diffblue AI was unable to find a test
     log.info( "This is a log message");
-    (new LogTest()).PublicMethod();
+
+    (new LogTest()).publicMethod();
   }
 }
 
